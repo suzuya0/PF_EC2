@@ -1,0 +1,2 @@
+class BarteredItem < ApplicationRecord
+end
