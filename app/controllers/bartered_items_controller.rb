@@ -1,4 +1,5 @@
 class BarteredItemsController < ApplicationController
+  
   def new
     @bartered_item = BarteredItem.new
   end
@@ -14,17 +15,37 @@ class BarteredItemsController < ApplicationController
   
   def show
     @bartered_item = BarteredItem.find(params[:id])
+    if @bartered_item.is_deleted == true
+      redirect_to root_path
+    end
   end
 
   def edit
+    @bartered_item = BarteredItem.find(params[:id])
+    if @bartered_item.is_deleted == true
+      redirect_to root_path
+    end
   end
-
+  
+  def update
+    @bartered_item = BarteredItem.find(params[:id])
+    @bartered_item.update(bartered_item_params)
+    redirect_to bartered_item_path(@bartered_item.id)
+  end
+  
+  def delete
+    @bartered_item = BarteredItem.find(params[:id])
+    @bartered_item.update(is_deleted: true)
+    redirect_to root_path
+  end
+  
+  
   def index
   end
   
 private
   def bartered_item_params
-    params.require(:bartered_item).permit(:user_id, :title, :explanation, :barter_way, :desired_place, :no1_wanted_item_id, :no2_wanted_item_id, :no3_wanted_item_id, bartered_item_images_images: [])
+    params.require(:bartered_item).permit(:user_id, :title, :explanation, :barter_way, :desired_place, :no1_wanted_item_id, :no2_wanted_item_id, :no3_wanted_item_id, :barter_status, bartered_item_images_images: [])
   end
 
 end
