@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get 'about' => 'homes#about' 
   resources :bartered_items, except: [:destroy]
   patch 'bartered_items/:id/delete' => 'bartered_items#delete', as: 'barter_delete'
+  get 'search' => 'bartered_items#search'
 end

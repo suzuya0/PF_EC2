@@ -10,9 +10,21 @@
   </head>
 
   <body>
+      <li>
+        <%= link_to "一覧へ", bartered_items_path %>
+      </li>
+      <div>
+        <%= form_with url: search_path, method: :get, local: true do |f| %>
+          <%= f.text_field :keyword, value: @keyword %>
+          <%= f.submit "検索" %>
+        <% end %>
+      </div>
      <% if user_signed_in? %>
       <li>
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      </li>
+      <li>
+        <%= link_to "トップへ", root_path %>
       </li>
     <% else %>
       <li>
@@ -21,7 +33,11 @@
       <li>
         <%= link_to "ログイン", new_user_session_path %>
       </li>
+      <li>
+        <%= link_to "トップへ", root_path %>
+      </li>
     <% end %>
+     <p id="notice"><%= notice %></p>
     <%= yield %>
   </body>
 </html>

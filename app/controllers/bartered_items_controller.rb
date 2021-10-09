@@ -39,8 +39,25 @@ class BarteredItemsController < ApplicationController
     redirect_to root_path
   end
   
-  
   def index
+    @bartered_items = BarteredItem.where(is_deleted: false)
+  end
+  
+  def search
+    keywords = params[:keyword].split(/[[:blank:]]+/).select(&:present?)
+    if keywords.present?
+      bartered_items_false = BarteredItem.where(is_deleted: false)
+      keywords.inject(bartered_items_false) do |bartered_items,keyword|
+        @items = bartered_items.where("title like?", "%#{keyword}%").or(bartered_items.where("explanation like?", "%#{keyword}%"))
+      end
+      @bartered_items = @items.distinct
+      @keyword = params[:keyword]
+      render "index"
+    else
+      flash[:notice] = '検索欄が未入力です。検索する際は、文字を入力して下さい。'
+      @bartered_items = BarteredItem.all
+      redirect_to bartered_items_path
+    end
   end
   
 private
