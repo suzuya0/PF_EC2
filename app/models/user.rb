@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :bartered_items, dependent: :destroy
   has_many :bartered_item_comments, dependent: :destroy
+  has_many :bookmarks,dependent: :destroy
+  
 end

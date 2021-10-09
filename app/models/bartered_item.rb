@@ -1,6 +1,7 @@
 class BarteredItem < ApplicationRecord
   has_many :bartered_item_images, dependent: :destroy
   has_many :bartered_item_comments, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
   belongs_to :user
   accepts_attachments_for :bartered_item_images, attachment: :image
   
@@ -18,5 +19,10 @@ class BarteredItem < ApplicationRecord
      沖縄県:47
      }
   enum barter_status:{募集中:0, 取引終了:1}
+  
+  def bookmarked_by?(user)
+    bookmarks.where(user_id:user).exists?
+  end
+  
   
 end
