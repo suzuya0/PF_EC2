@@ -4,4 +4,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :bartered_items, dependent: :destroy
+  has_many :bartered_item_comments, dependent: :destroy
 end

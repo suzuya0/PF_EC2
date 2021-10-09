@@ -23,3 +23,27 @@
 <div class="col-lg-2">
     <%= link_to "編集する", edit_bartered_item_path, class: "btn btn-warning" %>
 </div>
+
+<div>
+  <p>コメント件数：<%= @bartered_item.bartered_item_comments.count %></p>
+  <% @bartered_item.bartered_item_comments.each do |item_comment| %>
+    <%= item_comment.user.nick_name %>
+    <%= item_comment.created_at.strftime('%Y%m%d') %><%= item_comment.comment %>
+    <% if item_comment.user == current_user %>
+      <div>
+        <%= link_to "削除", bartered_item_bartered_item_comment_path(item_comment.bartered_item,item_comment), method: :delete %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<div>
+  <%= form_with(model:[@bartered_item,@bartered_item_comment],local: true) do |f| %>
+    <%= f.text_area :comment,rows:'5',placeholder:"コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>
+  
+  
+  
+</div>

@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_07_051906) do
+ActiveRecord::Schema.define(version: 2021_10_09_072015) do
+
+  create_table "bartered_item_comments", force: :cascade do |t|
+    t.integer "bartered_item_id"
+    t.integer "user_id"
+    t.text "comment", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "bartered_item_images", force: :cascade do |t|
     t.integer "bartered_item_id", null: false
