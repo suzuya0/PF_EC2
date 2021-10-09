@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'homes#top'
   get 'about' => 'homes#about' 
-  resources :bartered_items, except: [:destroy]
+  resources :bartered_items, except: [:destroy] do
+   resources :bartered_item_comments, only: [:create, :destroy]
+  end
   patch 'bartered_items/:id/delete' => 'bartered_items#delete', as: 'barter_delete'
   get 'search' => 'bartered_items#search'
 end

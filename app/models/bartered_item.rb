@@ -1,5 +1,6 @@
 class BarteredItem < ApplicationRecord
   has_many :bartered_item_images, dependent: :destroy
+  has_many :bartered_item_comments, dependent: :destroy
   belongs_to :user
   accepts_attachments_for :bartered_item_images, attachment: :image
   

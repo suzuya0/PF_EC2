@@ -15,6 +15,7 @@ class BarteredItemsController < ApplicationController
   
   def show
     @bartered_item = BarteredItem.find(params[:id])
+    @bartered_item_comment = BarteredItemComment.new
     if @bartered_item.is_deleted == true
       redirect_to root_path
     end
