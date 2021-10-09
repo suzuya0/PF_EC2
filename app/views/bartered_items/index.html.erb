@@ -6,13 +6,21 @@
     <br>
     <%= bartered_item.title %>
     <br>
-      <% if bartered_item.bartered_item_images.present? %>
-        <% bartered_item.bartered_item_images.each do |image| %>
-          <%= attachment_image_tag image, :image, class: "default_image" %>
-          <br>
-        <% end %>
-      <% else %>
-        画像はありません。
+
+    <% if bartered_item.bartered_item_images.present? %>
+      <% bartered_item.bartered_item_images.each do |image| %>
+        <%= attachment_image_tag image, :image, class: "default_image" %>
+        <br>
       <% end %>
+    <% else %>
+      画像はありません。
+    <% end %>
   <% end %>
+  <% if bartered_item.bookmarked_by?(current_user) %>
+    <%= link_to "ブックマークを外す", bartered_item_bookmarks_path(bartered_item), method: :delete %>
+  <% else %>
+    <%= link_to "ブックマークする", bartered_item_bookmarks_path(bartered_item), method: :post %>
+  <% end %>
+  <br>
 <% end %>
+

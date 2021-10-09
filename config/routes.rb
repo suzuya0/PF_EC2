@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root to: 'homes#top'
-  get 'about' => 'homes#about' 
+  
   resources :bartered_items, except: [:destroy] do
+   resource :bookmarks,only:[:create, :destroy]
    resources :bartered_item_comments, only: [:create, :destroy]
   end
-  patch 'bartered_items/:id/delete' => 'bartered_items#delete', as: 'barter_delete'
+  
   get 'search' => 'bartered_items#search'
+  get 'about' => 'homes#about' 
+  root to: 'homes#top'
+  patch 'bartered_items/:id/delete' => 'bartered_items#delete', as: 'barter_delete'
+  
 end
