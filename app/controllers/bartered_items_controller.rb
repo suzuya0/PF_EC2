@@ -6,7 +6,7 @@ class BarteredItemsController < ApplicationController
   
   def create
     @bartered_item = BarteredItem.new(bartered_item_params)
-    if @bartered_item.save!
+    if @bartered_item.save
       redirect_to bartered_item_path(@bartered_item.id)
     else
       render :new
