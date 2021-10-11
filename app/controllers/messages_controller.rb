@@ -9,4 +9,10 @@ class MessagesController < ApplicationController
     redirect_to room_path(@message.room_id)
   end
   
+  def destroy
+    message = Message.find(params[:id])
+    message.destroy
+    redirect_back(fallback_location: root_path)
+  end
+  
 end
