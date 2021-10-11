@@ -1,6 +1,12 @@
 <h3>譲渡アイテム　詳細</h3>
 <%= @bartered_item.user.nick_name %>
 <br>
+<% if current_user.following?(@bartered_item.user) %>
+  <%= link_to "Unfollow", user_relationships_path(@bartered_item.user.id), method: :delete %>
+<% else %>
+  <%= link_to "Follow", user_relationships_path(@bartered_item.user.id), method: :post %>
+<% end %>
+<br>
 <%= @bartered_item.title %>
 <br>
 <%= @bartered_item.explanation %>
