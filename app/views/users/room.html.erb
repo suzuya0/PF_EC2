@@ -1,0 +1,8 @@
+<div class="container">
+    <% @entries2.each do |entry| %>
+        <div class="row">
+          <%= "#{entry.user.nick_name}" %>
+          <%= link_to "チャットへ", room_path(entry.room_id), class:"btn btn-primary" %>
+        </div>
+    <% end %>
+</div>

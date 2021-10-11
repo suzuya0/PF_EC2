@@ -1,11 +1,22 @@
 Rails.application.routes.draw do
-  devise_for :users
+
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
+    passwords: 'users/passwords'
+  }
   
   resources :users, except: [:index, :destroy] do
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
   end
+  patch '/users/:id/delete' => 'users#delete', as: 'delete'
+  get '/users/:id/confirm' => 'users#confirm', as: 'confirm'
+  get '/users/:id/barters' => 'users#barter', as: 'barters'
+  get '/users/:id/wants' => 'users#want', as: 'wants'
+  get '/users/:id/bookmarks' => 'users#bookmark', as: 'bookmarks'
+  get '/users/:id/rooms' => 'users#room', as: 'rooms' 
   
   resources :bartered_items, except: [:destroy] do
    resource :bookmarks,only: [:create, :destroy]
@@ -16,7 +27,7 @@ Rails.application.routes.draw do
   
   resources :wanted_items, except: [:index]
   
-  resources :messages, only: [:create]
+  resources :messages, only: [:create, :destroy]
   resources :rooms, only: [:create, :show]
   
   

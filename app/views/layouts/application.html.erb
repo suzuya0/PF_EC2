@@ -10,6 +10,7 @@
   </head>
 
   <body>
+    <%= flash[:notice] %>
       <li>
         <%= link_to "一覧へ", bartered_items_path %>
       </li>
@@ -27,6 +28,9 @@
       </div>
      <% if user_signed_in? %>
       <li>
+        <%= link_to "マイページ", user_path(current_user) %>
+      </li>
+      <li>
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
       </li>
       <li>
@@ -43,7 +47,7 @@
         <%= link_to "トップへ", root_path %>
       </li>
     <% end %>
-     <p id="notice"><%= notice %></p>
+
     <%= yield %>
   </body>
 </html>
