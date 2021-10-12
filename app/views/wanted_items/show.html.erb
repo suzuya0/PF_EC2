@@ -5,14 +5,30 @@
 <br>
 <%= @wanted_item.explanation %>
 <br>
-<% if @wanted_item.wanted_item_images.present? %>
-  <% @wanted_item.wanted_item_images.each do |image| %>
-    <%= attachment_image_tag image, :image, class: "default_image" %>
-    <br>
-  <% end %>
-<% else %>
-  画像はありません。
-<% end %>
+<div style="width:30%">
+  <div class="main">
+    <% if @wanted_item.wanted_item_images.present? %>
+      <% @wanted_item.wanted_item_images.each do |image| %>
+        <div>
+          <%= attachment_image_tag image, :image, :fill, 480, 270, class: "default_image" %>
+        </div>   
+      <% end %>
+    <% else %>
+      画像はありません。
+    <% end %>
+  </div>
+  <div class="nav", style="width:80%">
+    <% if @wanted_item.wanted_item_images.present? %>
+      <% @wanted_item.wanted_item_images.each do |image| %>
+        <div>
+          <%= attachment_image_tag image, :image, :fill, 50, 50, class: "default_image" %>
+        </div>
+      <% end %>
+    <% else %>
+      画像はありません。
+    <% end %>
+  </div>
+</div>
 <br>
 <div class="col-lg-2">
     <%= link_to "編集する", edit_wanted_item_path, class: "btn btn-warning" %>

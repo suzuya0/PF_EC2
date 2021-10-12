@@ -19,3 +19,22 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+$(function() {
+    $('.main').slick({
+    fade: true,
+    arrows:false,
+    asNavFor:'.nav',
+    });
+});
+
+$(function() {
+    $('.nav').slick({
+    asNavFor:'.main',
+    focusOnSelect: true,
+    slidesToShow:3,
+    slidesToScroll:1,
+    centerMode: true,
+    });
+});
+
