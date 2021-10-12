@@ -25,4 +25,5 @@ class BarteredItem < ApplicationRecord
   end
   
   
+  
 end
