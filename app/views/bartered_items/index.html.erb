@@ -8,7 +8,7 @@
     <br>
 
     <% if bartered_item.bartered_item_images.present? %>
-      <% bartered_item.bartered_item_images.each do |image| %>
+      <% bartered_item.bartered_item_images.last(1).each do |image| %>
         <%= attachment_image_tag image, :image, class: "default_image" %>
         <br>
       <% end %>

@@ -52,6 +52,31 @@
       </div>
     </div>
   </div>
+  <br>
+  <div class="row">
+    <div class="col-lg-2">お探しアイテム（１番目）</div>
+    <div class="col-lg-4">
+      <div>
+		    <%= f.select :no1_wanted_item_id, options_from_collection_for_select(current_user.wanted_items, :id, :title), prompt: "お探しアイテムから選択してください" %>
+		  </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2">お探しアイテム（２番目）</div>
+    <div class="col-lg-4">
+      <div>
+		    <%= f.select :no2_wanted_item_id, options_from_collection_for_select(current_user.wanted_items, :id, :title), prompt: "お探しアイテムから選択してください" %>
+		  </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2">お探しアイテム（３番目）</div>
+    <div class="col-lg-4">
+      <div>
+		    <%= f.select :no3_wanted_item_id, options_from_collection_for_select(current_user.wanted_items, :id, :title), prompt: "お探しアイテムから選択してください" %>
+		  </div>
+    </div>
+  </div>
   <div class="row" style="margin:30px 10px 0px 10px">
     <div class="col-lg-2 offset-lg-2">    
       <%= f.hidden_field :user_id, :value => current_user.id %>

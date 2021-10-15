@@ -20,21 +20,25 @@
 //= require turbolinks
 //= require_tree .
 
-$(function() {
-    $('.main').slick({
-    fade: true,
-    arrows:false,
-    asNavFor:'.nav',
+$(document).on('turbolinks:load', function() {
+    $(function() {
+        $('.main').slick({
+        fade: true,
+        arrows:false,
+        asNavFor:'.nav',
+        });
     });
 });
 
-$(function() {
-    $('.nav').slick({
-    asNavFor:'.main',
-    focusOnSelect: true,
-    slidesToShow:3,
-    slidesToScroll:1,
-    centerMode: true,
+$(document).on('turbolinks:load', function() {
+    $(function() {
+        $('.nav').slick({
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        asNavFor: '.main',
+        centerMode: true,
+        focusOnSelect: true,
+        dots: true
+        });
     });
 });
-
