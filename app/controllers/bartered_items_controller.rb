@@ -6,6 +6,7 @@ class BarteredItemsController < ApplicationController
   
   def create
     @bartered_item = BarteredItem.new(bartered_item_params)
+    @bartered_item.no1_wanted_item_id 
     if @bartered_item.save
       redirect_to bartered_item_path(@bartered_item.id)
     else
@@ -15,9 +16,33 @@ class BarteredItemsController < ApplicationController
   
   def show
     @bartered_item = BarteredItem.find(params[:id])
-    @bartered_item_comment = BarteredItemComment.new
+    
     if @bartered_item.is_deleted == true
       redirect_to root_path
+    end
+    
+    @bartered_item_comment = BarteredItemComment.new
+    no1_wanted_item = WantedItem.where(id: @bartered_item.no1_wanted_item_id)
+    no2_wanted_item = WantedItem.where(id: @bartered_item.no2_wanted_item_id)
+    no3_wanted_item = WantedItem.where(id: @bartered_item.no3_wanted_item_id)
+    @wanted_items = no1_wanted_item + no2_wanted_item + no3_wanted_item
+  
+    @user = @bartered_item.user
+    @currentUserEntry = Entry.where(user_id: current_user.id)
+    @userEntry = Entry.where(user_id: @user.id)
+    unless @user == current_user
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
+          if cu.room_id == u.room_id
+            @isRoom = true
+            @roomID = cu.room_id
+          end
+        end
+      end
+      unless @isRoom
+        @room = Room.new
+        @entry = Entry.new
+      end
     end
   end
 
