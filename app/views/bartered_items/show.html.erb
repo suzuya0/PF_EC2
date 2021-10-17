@@ -161,14 +161,12 @@
       <%= form_with(model:[@bartered_item,@bartered_item_comment],local: true) do |f| %>
         <div class="form-group-comment">
           <%= f.text_area :comment, class:"form-control" ,placeholder:"コメント", id:"comment" %>
+          <div class="text-right">
+            <%= f.button :type => "submit", style: 'border-style: none; background: none;' do %>
+              <i class="fas fa-paper-plane fa-lg"></i>
+            <% end %>
+          </div>
         </div>
-    </div>
-    <div class="col-lg-1 offset-lg-11">
-      <div class="text-right">
-        <%= f.button :type => "submit", style: 'border-style: none;' do %>
-          <i class="fas fa-paper-plane fa-lg"></i>
-        <% end %>
-      </div>
       <% end %>
     </div>
   </div>
@@ -192,5 +190,4 @@
       </div>
     <% end %>
   </div>
-    
 </div>
