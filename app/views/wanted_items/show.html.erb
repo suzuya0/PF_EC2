@@ -1,0 +1,37 @@
+<h3>譲渡アイテム　詳細</h3>
+<%= @wanted_item.user.nick_name %>
+<br>
+<%= @wanted_item.title %>
+<br>
+<%= @wanted_item.explanation %>
+<br>
+<div style="width:30%">
+  <div class="main">
+    <% if @wanted_item.wanted_item_images.present? %>
+      <% @wanted_item.wanted_item_images.each do |image| %>
+        <div>
+          <%= attachment_image_tag image, :image, :fill, 480, 270, class: "default_image" %>
+        </div>   
+      <% end %>
+    <% else %>
+      画像はありません。
+    <% end %>
+  </div>
+  <div class="nav", style="width:80%">
+    <% if @wanted_item.wanted_item_images.present? %>
+      <% @wanted_item.wanted_item_images.each do |image| %>
+        <div>
+          <%= attachment_image_tag image, :image, :fill, 50, 50, class: "default_image" %>
+        </div>
+      <% end %>
+    <% else %>
+      画像はありません。
+    <% end %>
+  </div>
+</div>
+<br>
+<div class="col-lg-2">
+    <%= link_to "編集する", edit_wanted_item_path, class: "btn btn-warning" %>
+</div>
+
+</div>

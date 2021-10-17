@@ -1,0 +1,18 @@
+<h3>譲渡アイテム　一覧</h3>
+
+<% @wanted_items.each do |wanted_item| %>
+  <%= link_to wanted_item_path(wanted_item.id) do %>
+    <%= wanted_item.user.nick_name %>
+    <br>
+    <%= wanted_item.title %>
+    <br>
+    <% if wanted_item.wanted_item_images.present? %>
+      <% wanted_item.wanted_item_images.first(1).each do |image| %>
+        <%= attachment_image_tag image, :image, class: "default_image" %>
+        <br>
+      <% end %>
+    <% else %>
+      画像はありません。
+    <% end %>
+  <% end %>
+<% end %>

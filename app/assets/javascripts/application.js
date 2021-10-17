@@ -10,7 +10,35 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
+
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+    $(function() {
+        $('.main').slick({
+        fade: true,
+        arrows:false,
+        asNavFor:'.nav',
+        });
+    });
+});
+
+$(document).on('turbolinks:load', function() {
+    $(function() {
+        $('.nav').slick({
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        asNavFor: '.main',
+        centerMode: true,
+        focusOnSelect: true,
+        dots: true
+        });
+    });
+});

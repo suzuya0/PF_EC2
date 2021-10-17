@@ -1,0 +1,36 @@
+<h4>ダイレクトメッセージ</h4>
+
+<% @entries.each do |entry| %>
+  <%= link_to "#{entry.user.nick_name}さん", user_path(entry.user) %>
+  <br>
+<% end %>
+
+<div>
+  <% if @messages.present? %>
+    <% @messages.each do |message| %>
+      <div>
+        <div>
+          <%= "#{message.user.nick_name}" %>
+        </div>
+        <div>
+          <%= message.content %>
+          <br>
+          <%= message.created_at.strftime("%Y-%m-%d %H:%M") %>
+        </div>
+        <div>
+          <% if message.user_id == current_user.id %>
+            <%= link_to "削除する", message_path(message),"data-confirm" => "削除しますか？", method: :delete %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+  
+<div>
+  <%= form_with model:@message, local:true do |f| %>
+    <%= f.text_field :content,size: 70 %>
+    <%= f.hidden_field :room_id, value: @room.id %>
+    <%= f.submit "送信" %>
+  <% end %>
+</div>

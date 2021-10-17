@@ -1,0 +1,40 @@
+<div class='container'>
+  
+  <div class="row" style="margin:30px 50px 40px 20px">
+    <div class="col-lg-4 offset-lg-2">
+      <h3 style="background-color: #FFE28C;vertical-align: middle;text-align: center;">お探しアイテム 新規追加</h3>
+    </div>
+  </div>
+  
+  <%= form_with model:@wanted_item, local:true do |f| %>
+  <div class='row'>
+    <div class="col-lg-2">画像アップロード</div>
+    <div class="col-lg-2">
+      <div class="form-group">
+        <%= f.attachment_field :wanted_item_images_images, multiple: true %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2">タイトル</div>
+    <div class="col-lg-4">
+      <div class="form-group">
+        <%= f.text_field :title, class:"form-control"%>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2">お探しアイテム詳細</div>
+    <div class="col-lg-4">
+      <div class="form-group">
+        <%= f.text_field :explanation, class:"form-control"%>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin:30px 10px 0px 10px">
+    <div class="col-lg-2 offset-lg-2">    
+      <%= f.submit "作成",class:"btn btn-warning btn-lg btn-block" %>
+      <% end %>
+    </div>
+  </div>
+</div>

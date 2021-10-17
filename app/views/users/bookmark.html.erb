@@ -1,0 +1,26 @@
+
+<h3>ブックマーク　一覧</h3>
+
+<% @bookmarks.each do |bookmark| %>
+  <%= link_to bartered_item_path(bookmark.bartered_item.id) do %>
+    <%= bookmark.bartered_item.user.nick_name %>
+    <br>
+    <%= bookmark.bartered_item.title %>
+    <br>
+
+    <% if bookmark.bartered_item.bartered_item_images.present? %>
+      <% bookmark.bartered_item.bartered_item_images.first(1).each do |image| %>
+        <%= attachment_image_tag image, :image, class: "default_image" %>
+        <br>
+      <% end %>
+    <% else %>
+      画像はありません。
+    <% end %>
+  <% end %>
+  <% if bookmark.bartered_item.bookmarked_by?(current_user) %>
+    <%= link_to "ブックマークを外す", bartered_item_bookmarks_path(bookmark.bartered_item),"data-confirm" => "ブックマークを外しますか？", method: :delete %>
+  <% else %>
+    <%= link_to "ブックマークする", bartered_item_bookmarks_path(bookmark.bartered_item), method: :post %>
+  <% end %>
+  <br>
+<% end %>
