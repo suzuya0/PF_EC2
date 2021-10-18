@@ -23,13 +23,16 @@ body {
   display: flex;
   flex-flow: column;
   min-height: 100vh;
-   background-image: image-url("nyanbo.jpg")
+  background-image: image-url("nyanbo.jpg");
 }
 
 main {
   flex: 1;
 }
 
+footer{
+    margin: 50px 0 0 0; 
+}
 
 #navbarDropdownMenuLink{
     color: #000;
@@ -70,6 +73,10 @@ main {
     margin: 0px 20px 20px 20px;
 }
 
+.fa-user{
+    margin: 0px 20px 20px 20px;
+}
+
 .item-show{
     margin: 20px 0 20px 0;
 }
@@ -82,7 +89,7 @@ main {
     margin: 50px 0px 20px 0px;
 }
 
-#comment{
+#input_comment{
     height: 150px;
 }
 
@@ -108,3 +115,6 @@ main {
     color: #FFE28C;
 }
 
+#input_explanation{
+    height: 300px;
+}
