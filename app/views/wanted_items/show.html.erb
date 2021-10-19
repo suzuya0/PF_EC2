@@ -1,37 +1,76 @@
-<h3>譲渡アイテム　詳細</h3>
-<%= @wanted_item.user.nick_name %>
-<br>
-<%= @wanted_item.title %>
-<br>
-<%= @wanted_item.explanation %>
-<br>
-<div style="width:30%">
-  <div class="main">
-    <% if @wanted_item.wanted_item_images.present? %>
-      <% @wanted_item.wanted_item_images.each do |image| %>
-        <div>
-          <%= attachment_image_tag image, :image, :fill, 480, 270, class: "default_image" %>
-        </div>   
-      <% end %>
-    <% else %>
-      画像はありません。
-    <% end %>
-  </div>
-  <div class="nav", style="width:80%">
-    <% if @wanted_item.wanted_item_images.present? %>
-      <% @wanted_item.wanted_item_images.each do |image| %>
-        <div>
-          <%= attachment_image_tag image, :image, :fill, 50, 50, class: "default_image" %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <div>
+        <div class="main">
+          <% @wanted_item.wanted_item_images.each do |image| %>
+            <div>
+              <%= attachment_image_tag image, :image, class: "img-fluid", fallback: image_url("no_image.jpg")%>
+            </div>
+          <% end %>
         </div>
-      <% end %>
-    <% else %>
-      画像はありません。
-    <% end %>
+      </div>  
+    </div>
+  </div> 
+  
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <div class="nav">
+        <% if @wanted_item.wanted_item_images.present? %>
+          <% @wanted_item.wanted_item_images.each do |image| %>
+              <%= attachment_image_tag image, :image, :fill, 50, 50, class: "default_image" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
-<br>
-<div class="col-lg-2">
-    <%= link_to "編集する", edit_wanted_item_path, class: "btn btn-warning" %>
+  
+
+  <div class="row">
+    <div class="col-lg-6 item-show">
+      <span>
+        お探しグッズ　詳細
+      </span>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-lg-12">
+      探し主：<%= link_to user_path(@wanted_item.user) do %><%= @wanted_item.user.nick_name %><% end %>
+    </div>
+  </div>
+  
+  <div class="row">
+    <table class="table">
+      <tbody>
+        <tr>
+          <th class="align-middle", style="width: 144px"><div class="text-center">タイトル</div></th>
+          <th><div class="text-left"><%= @wanted_item.title %></div></th>
+        </tr>
+        <tr>
+          <th class="align-middle"><div class="text-center">説明</div></th>
+          <th><%= @wanted_item.explanation %></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 offset-lg-8">
+      <div class="edit-button text-right">
+        <%= link_to "#{@wanted_item.user.nick_name}さんの欲しいモノリスト一覧へ", wants_path(@wanted_item.user) %>
+      </div>
+    </div>
+  </div>
+    
+  <% if current_user == @wanted_item.user %>
+    <div class="row">
+      <div class="col-lg-1 offset-lg-11">
+        <div class="edit-button text-right">
+          <%= link_to "編集", edit_wanted_item_path(@wanted_item), class: "btn btn-warning" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  
 </div>
 
-</div>

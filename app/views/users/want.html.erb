@@ -1,18 +1,37 @@
-<h3>譲渡アイテム　一覧</h3>
-
-<% @wanted_items.each do |wanted_item| %>
-  <%= link_to wanted_item_path(wanted_item.id) do %>
-    <%= wanted_item.user.nick_name %>
-    <br>
-    <%= wanted_item.title %>
-    <br>
-    <% if wanted_item.wanted_item_images.present? %>
-      <% wanted_item.wanted_item_images.first(1).each do |image| %>
-        <%= attachment_image_tag image, :image, class: "default_image" %>
-        <br>
-      <% end %>
-    <% else %>
-      画像はありません。
+<div class="container">
+  <div class="row">
+    <% @wanted_items.first(1).each do |wanted_item| %>
+      <h5>
+        <%= link_to user_path(wanted_item.user) do %>
+            <%= "#{wanted_item.user.nick_name}" %>
+          <% end %>さんのお探しグッズ一覧
+      </h5>
     <% end %>
-  <% end %>
-<% end %>
+  </div>
+  <div class="row">
+    <% @wanted_items.each do |wanted_item| %>
+      <div class="col-lg-3 index-item">
+        <table class="table table-bordered item-table">
+            <tr>
+              <td class="text-center">
+                <%= link_to wanted_item_path(wanted_item.id) do %>
+                  <% if wanted_item.wanted_item_images.present? %>
+                    <% wanted_item.wanted_item_images.last(1).each do |image| %>
+                      <%= attachment_image_tag image, :image, :fill, 200, 200, fallback: image_url("no_image.jpg")%>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+              <%= link_to wanted_item_path(wanted_item.id) do %>
+                <%= truncate(wanted_item.title, length: 29) %>
+              <% end %>
+              </td>
+            </tr>
+        </table> 
+      </div>
+    <% end %>
+  </div>
+</div>
