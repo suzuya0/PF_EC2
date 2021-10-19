@@ -52,11 +52,11 @@ class UsersController < ApplicationController
   end
 
   def barter
-    @bartered_items = BarteredItem.where(is_deleted: false)
+    @bartered_items = BarteredItem.where(is_deleted: false).where(user_id: params[:id])
   end
 
   def want
-    @wanted_items = WantedItem.all
+    @wanted_items = WantedItem.where(user_id: params[:id])
   end
 
   def bookmark

@@ -3,34 +3,40 @@
   <div class="row">
     <% @bartered_items.each do |bartered_item| %>
       <div class="col-lg-3 index-item">
-        <div class="text-center">
-          <%= link_to bartered_item_path(bartered_item.id) do %>
-            <% if bartered_item.bartered_item_images.present? %>
-              <% bartered_item.bartered_item_images.last(1).each do |image| %>
-                <%= attachment_image_tag image, :image, :fill, 200, 200 %>
+        <table class="table table-bordered item-table">
+          <tr>
+            <td class="text-center">
+              <%= link_to bartered_item_path(bartered_item.id) do %>
+                <% if bartered_item.bartered_item_images.present? %>
+                  <% bartered_item.bartered_item_images.last(1).each do |image| %>
+                    <%= attachment_image_tag image, :image, :fill, 200, 200, fallback: image_url("no_image.jpg")%>
+                  <% end %>
+                <% end %>
               <% end %>
-            <% else %>
-              画像はありません。
-            <% end %>
-          <% end %>
-        </div>
-        <div>
-          <%= link_to bartered_item_path(bartered_item.id) do %>
-            <%= truncate(bartered_item.title, length: 33) %>
-          <% end %>
-          <% if bartered_item.bookmarked_by?(current_user) %>
-            <%= link_to bartered_item_bookmarks_path(bartered_item), method: :delete do %>
-              <i class="fas fa-bookmark"></i>
-            <% end %>
-          <% else %>
-            <%= link_to bartered_item_bookmarks_path(bartered_item), method: :post do %>
-              <i class="far fa-bookmark"></i>
-            <% end %>
-          <% end %>
-        </div>
-        <sapn>
-          出品者:<%= link_to user_path(bartered_item.user) do %><%= bartered_item.user.nick_name %><% end %>
-        </span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              出品者:<%= link_to user_path(bartered_item.user) do %><%= bartered_item.user.nick_name %><% end %>
+            </td>
+          </tr>          
+          <tr>
+            <td>
+              <%= link_to bartered_item_path(bartered_item.id) do %>
+                <%= truncate(bartered_item.title, length: 29) %>
+              <% end %>
+              <% if bartered_item.bookmarked_by?(current_user) %>
+                <%= link_to bartered_item_bookmarks_path(bartered_item), method: :delete do %>
+                  <i class="fas fa-bookmark"></i>
+                <% end %>
+              <% else %>
+                <%= link_to bartered_item_bookmarks_path(bartered_item), method: :post do %>
+                  <i class="far fa-bookmark"></i>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        </table> 
       </div>
     <% end %>
   </div>
