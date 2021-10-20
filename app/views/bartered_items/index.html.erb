@@ -8,7 +8,7 @@
             <td class="text-center">
               <%= link_to bartered_item_path(bartered_item.id) do %>
                 <% if bartered_item.bartered_item_images.present? %>
-                  <% bartered_item.bartered_item_images.last(1).each do |image| %>
+                  <% bartered_item.bartered_item_images.first(1).each do |image| %>
                     <%= attachment_image_tag image, :image, :fill, 200, 200, fallback: image_url("no_image.jpg")%>
                   <% end %>
                 <% end %>

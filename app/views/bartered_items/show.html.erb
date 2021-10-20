@@ -25,8 +25,6 @@
     </div>
   </div>
   
-  
-
   <div class="row">
     <div class="col-lg-6 item-show">
       <span>
@@ -47,41 +45,43 @@
   </div>
   
   <div class="row">
-        <span>
-          出品者：<%= link_to user_path(@bartered_item.user) do %><%= "#{@bartered_item.user.nick_name}さん" %><% end %>
-        </span>
-        <% unless current_user == @user %>
-          <span>
-            <% if current_user.following?(@bartered_item.user) %>
-              <%= link_to user_relationships_path(@bartered_item.user.id), method: :delete do %>
-                <i class="fas fa-user-check fa-lg"></i>
-              <% end %>
-            <% else %>
-              <%= link_to user_relationships_path(@bartered_item.user.id), method: :post do %>
-                <i class="far fa-user fa-lg"></i>
-              <% end %>
-            <% end %>
-          </span>
-          <span>
-            <% if @isRoom == true %>
-              <%= link_to room_path(@roomID) do%>
-                <i class="fas fa-envelope fa-lg"></i>
-              <% end %>
-            <% else %>
-              <%= form_with model:@room, local:true do |f| %>
-                <%= fields_for @entry do |e| %>
-                  <%= e.hidden_field :user_id, value: @user.id %>
-                <% end %>
-                <%= f.button :type => "submit", style: 'border-style: none; background: none;' do %>
-                  <i class="far fa-envelope fa-lg"></i>
-                <% end %>
-              <% end %>
-            <% end %>
-          </span>
+    <div class="col-lg-12">
+    <span>
+      出品者：<%= link_to user_path(@bartered_item.user) do %><%= "#{@bartered_item.user.nick_name}さん" %><% end %>
+    </span>
+    <% unless current_user == @user %>
+      <span>
+        <% if current_user.following?(@bartered_item.user) %>
+          <%= link_to user_relationships_path(@bartered_item.user.id), method: :delete do %>
+            <i class="fas fa-user-check fa-lg"></i>
+          <% end %>
+        <% else %>
+          <%= link_to user_relationships_path(@bartered_item.user.id), method: :post do %>
+            <i class="far fa-user fa-lg"></i>
+          <% end %>
         <% end %>
+      </span>
+      <span style="display: inline-block;">
+        <% if @isRoom == true %>
+          <%= link_to room_path(@roomID) do%>
+            <i class="fas fa-envelope fa-lg"></i>
+          <% end %>
+        <% else %>
+          <%= form_with model:@room, local:true do |f| %>
+            <%= fields_for @entry do |e| %>
+              <%= e.hidden_field :user_id, value: @user.id %>
+            <% end %>
+            <%= f.button :type => "submit", style: 'border-style: none; background: none;' do %>
+              <i class="far fa-envelope fa-lg"></i>
+            <% end %>
+          <% end %>
+        <% end %>
+      </span>
+      <% end %>
+    </div>
   </div>
   
-  
+
   <div class="row">
     <table class="table">
       <tbody>

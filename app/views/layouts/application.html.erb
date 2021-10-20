@@ -16,19 +16,15 @@
   <body>
     
     <header style="background-color: #FFE28C;">
-      <nav class="navbar navbar-expand-lg navbar-light">
-          <a class="navbar-brand" href="/"><span style="color:orange;">BarterAnimeGoods</span></a>
+      <nav class="navbar navbar-expand-lg navbar-dark">
+          <a class="navbar-brand" href="/"><span class="text-dark">BarterAnimeGoods</span></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-around" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
-                <li class="nav-item">
-                    <%= link_to user_path(current_user) do %>
-                      <i class="fas fa-user-circle">Mypage</i>
-                    <% end %>
-                </li>
+                <li class="nav-item"><%= link_to "Mypage", user_path(current_user), class:"fas fa-user-circle text-dark" %></li>
                 <li class="dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" aria-haspopup="true" aria-expanded="false">
                    グッズ一覧・追加
@@ -39,11 +35,7 @@
                     <%= link_to "お探しグッズ追加", new_wanted_item_path, class:"dropdown-item" %>
                   </div>
                 </li>
-                <li class="nav-item">
-                    <%= link_to destroy_user_session_path, method: :delete do %>
-                      <i class="fas fa-sign-out-alt">Logout</i>
-                    <% end %>
-                </li>
+                <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"fas fa-sign-out-alt text-dark"%></li>
                 <li class="nav-item">
                   <%= form_with url: search_path, method: :get, local: true do |f| %>
                     <%= f.text_field :keyword, value: @keyword %>

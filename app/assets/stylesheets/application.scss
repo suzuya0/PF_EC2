@@ -51,6 +51,30 @@ footer{
   display: block;
 }
 
+.mypage-icon{
+    display: inline-block;
+    background-color: #FCD07E;
+    border-radius: 0.25rem;
+    margin: 0 5px 0 0 ;
+}
+
+.mypage-row{
+    padding: 10px 0 10px 0;
+}
+
+.edit-button{
+    margin: 5px 0 0 0;
+}
+
+.introduction{
+    margin:20px;
+    background-color: white;
+}
+
+#input_introduction{
+    height: 200px;
+}
+
 .index-item{
     margin: 10px 0 10px 0;
 }
