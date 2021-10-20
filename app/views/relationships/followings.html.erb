@@ -1,23 +1,37 @@
-<h2>Follow Users</h2>
-<% if @users.exists? %>
-<table class="table">
-  <thead>
-    <tr>
-      <th>nick_name</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.nick_name %></td>
-        <td>フォロー数: <%= user.followings.count %></td>
-        <td>フォロワー数: <%= user.followers.count %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <h5>
+        <%= link_to user_path(@user) do %>
+          <%= "#{@user.nick_name}" %>
+        <% end %>さんのFollow
+      </h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <% if @users.exists? %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ニックネーム</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= link_to user_path(user) do %><%= "#{user.nick_name} さん" %><% end %></td>
+              <td><%= link_to barters_path(user) do %>譲渡グッズ掲載数： <%= user.bartered_items.count %><% end %></td>
+              <td><%= link_to wants_path(user) do %>お探しグッズ掲載数：<%= user.wanted_items.count %><% end %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% else %>
+        <p>フォローしている人はいません</p>
+      <% end %>
+    </div>
+  </div>
+</div>

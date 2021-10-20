@@ -4,6 +4,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @bartered_items = BarteredItem.where(is_deleted: false).where(user_id: @user.id).last(4).reverse
+    @wanted_items = WantedItem.where(user_id: @user.id).last(4).reverse
+    @bookmarks = Bookmark.where(user_id: @user.id).last(4).reverse
     @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry = Entry.where(user_id: @user.id)
     unless @user == current_user
@@ -60,7 +63,7 @@ class UsersController < ApplicationController
   end
 
   def bookmark
-    @bookmarks =Bookmark.where(user_id: current_user.id)
+    @bookmarks =Bookmark.where(user_id: current_user.id).reverse
   end
   
   def room
