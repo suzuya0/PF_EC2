@@ -146,3 +146,28 @@ footer{
 #input_explanation{
     height: 300px;
 }
+
+#input_message{
+    height: 180px;
+    margin: 20px 0 0 0;
+}
+
+.your-chat-content{
+    display: inline-block;
+    background-color: #C9F562;
+    border-radius: 0.25rem;
+    margin: 5px 0 5px 0 ;
+    padding: 10px;
+}
+
+.other-chat-content{
+    display: inline-block;
+    background-color: #F2F2F2;
+    border-radius: 0.25rem;
+    margin: 5px 0 0 0 ;
+    padding: 10px;
+}
+
+.chat-time{
+    margin: 15px 0 0 0;
+}
