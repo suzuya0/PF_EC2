@@ -68,8 +68,9 @@ class UsersController < ApplicationController
   
   def room
     @entries = Entry.where(user_id: current_user.id)
+    @entries2 = Entry.none
     @entries.each do |entry|
-      @entries2 = Entry.where(room_id: entry.room_id).where.not(user_id: current_user.id)#####where.notで指定以外を取得(参考https://www.sejuku.net/blog/13363）#####
+      @entries2 += Entry.where(room_id: entry.room_id).where.not(user_id: current_user.id)#####where.notで指定以外を取得(参考https://www.sejuku.net/blog/13363）#####
     end
   end
   
