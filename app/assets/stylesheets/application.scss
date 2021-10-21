@@ -46,9 +46,57 @@ footer{
   padding: 15px;
 }
 
-
 .dropdown:hover>.dropdown-menu {
   display: block;
+}
+
+.label_name{
+    margin: 60px 0 0 0;
+}
+
+.input_name{
+    margin: 60px 0 0 0;
+    width: 400px;
+}
+
+.label_signup_email{
+    margin: 30px 0 0 0;
+}
+
+.input_signup_email{
+    margin: 30px 0 0 0;
+    width: 400px;
+}
+
+.label_signup_password{
+    margin: 30px 0 0 0;
+}
+
+.input_signup_password{
+    margin: 30px 0 0 0;
+    width: 400px;
+}
+
+.label_email{
+   margin: 60px 0 0 0; 
+}
+
+.input_email{
+    margin: 60px 0 0 0;
+    width: 400px;
+}
+
+.input_password{
+    margin: 50px 0 40px 0;
+    width: 400px;
+}
+
+.label_password{
+   margin: 50px 0 0 0; 
+}
+
+.btn_login{
+    margin: 30px 0 0 0;
 }
 
 .mypage-icon{

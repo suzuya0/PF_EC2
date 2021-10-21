@@ -3,8 +3,9 @@
     <div class="col-lg-3 text-center">
       <div><%= attachment_image_tag @user, :image, class: "img-fluid", fallback: image_url("no_image.jpg") %></div>
       <% if @user == current_user %>
-        <div><%= link_to "DM一覧", users_rooms_path(@user) %></div>
+        <div><%= link_to "チャットルーム一覧", users_rooms_path(@user) %></div>
       <% else %>
+
         <div style="padding: 0 20px 0 0">
           <span>
             <% if current_user.following?(@user) %>

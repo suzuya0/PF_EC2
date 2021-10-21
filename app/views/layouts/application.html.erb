@@ -45,17 +45,14 @@
                   <% end %>
                 </li>                
               <% else %>
-                <li>
-                  <%= link_to "新規登録", new_user_registration_path %>
+                <li class="nav-item">
+                  <%= link_to "新規登録", new_user_registration_path, class:"fas fa-user-plus text-dark"%>
                 </li>
-                <li>
-                  <%= link_to "ログイン", new_user_session_path %>
+                <li class="nav-item">
+                  <%= link_to "ログイン", new_user_session_path, class:"fas fa-sign-in-alt text-dark"%>
                 </li>
-                <li>
-                  <%= link_to "トップへ", root_path %>
-                </li>
-                <li>
-                  <%= link_to "一覧へ", bartered_items_path %>
+                <li class="nav-item">
+                  <%= link_to "譲渡グッズ一覧", bartered_items_path, class:"text-dark" %>
                 </li>
               <% end %>
             </ul>
