@@ -1,8 +1,8 @@
 <div class='container'>
   
   <div class="row" style="margin:30px 50px 40px 20px">
-    <div class="col-lg-4 offset-lg-2">
-      <h3 style="background-color: #FFE28C;vertical-align: middle;text-align: center;">登録情報　編集</h3>
+    <div class="col-lg-4 offset-lg-3">
+      <h3 style="text-align: center;">登録情報　編集</h3>
     </div>
   </div>
   
@@ -24,9 +24,9 @@
   </div>
   <div class="row">
     <div class="col-lg-2">自己紹介</div>
-    <div class="col-lg-4">
+    <div class="col-lg-8">
       <div class="form-group">
-        <%= f.text_field :introduction, class:"form-control"%>
+        <%= f.text_area :introduction, class:"form-control", id:"input_introduction"%>
       </div>
     </div>
   </div>
@@ -54,7 +54,7 @@
   <br>
 
   <div class="row" style="margin:30px 10px 0px 10px">
-    <div class="col-lg-2 offset-lg-2">    
+    <div class="col-lg-2 offset-lg-3">    
       <%= f.submit "更新",class:"btn btn-warning" %>
       <% end %>
     </div>

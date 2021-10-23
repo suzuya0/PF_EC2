@@ -1,16 +1,16 @@
 class BarteredItemCommentsController < ApplicationController
   
   def create
-    bartered_item = BarteredItem.find(params[:bartered_item_id])
-    comment = current_user.bartered_item_comments.new(comment_params)
-    comment.bartered_item_id = bartered_item.id
-    comment.save
-    redirect_to bartered_item_path(bartered_item)
+    @bartered_item = BarteredItem.find(params[:bartered_item_id])
+    @bartered_item_comment = current_user.bartered_item_comments.new(comment_params)
+    @bartered_item_comment.bartered_item_id = @bartered_item.id
+    @bartered_item_comment.save
   end
   
   def destroy
-    BarteredItemComment.find_by(id:params[:id]).destroy
-    redirect_to bartered_item_path(params[:bartered_item_id])
+    @bartered_item = BarteredItem.find(params[:bartered_item_id])
+    comment = @bartered_item.bartered_item_comments.find(params[:id])
+    comment.destroy
   end
   
   private

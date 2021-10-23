@@ -1,36 +1,28 @@
-<h4>ダイレクトメッセージ</h4>
-
-<% @entries.each do |entry| %>
-  <%= link_to "#{entry.user.nick_name}さん", user_path(entry.user) %>
-  <br>
-<% end %>
-
-<div>
-  <% if @messages.present? %>
-    <% @messages.each do |message| %>
-      <div>
-        <div>
-          <%= "#{message.user.nick_name}" %>
-        </div>
-        <div>
-          <%= message.content %>
-          <br>
-          <%= message.created_at.strftime("%Y-%m-%d %H:%M") %>
-        </div>
-        <div>
-          <% if message.user_id == current_user.id %>
-            <%= link_to "削除する", message_path(message),"data-confirm" => "削除しますか？", method: :delete %>
-          <% end %>
+<div class="container">
+  <% @entries.each do |entry| %>
+  　<% next if entry.user == current_user %>
+    <h4><%= link_to "#{entry.user.nick_name}さん", user_path(entry.user) %>とのチャットルーム</h4>
+  <% end %>
+  
+  <div class="messages">
+    <%= render "messages/index", messages: @messages %>
+  </div>
+  
+  <%= form_with model:@message do |f| %>
+    <div class="row">
+      <div class="col-lg-9 offset-lg-1">
+        <div class="form-group">
+          <%= f.text_area :content, class:"form-control", id: "input_message" %>
         </div>
       </div>
-    <% end %>
-  <% end %>
-</div>
-  
-<div>
-  <%= form_with model:@message, local:true do |f| %>
-    <%= f.text_field :content,size: 70 %>
+    </div>
     <%= f.hidden_field :room_id, value: @room.id %>
-    <%= f.submit "送信" %>
+    <div class="row">
+      <div class="col-lg-2 offset-lg-8">
+        <div class="text-right">
+          <%= f.submit "送信", class:"btn btn-warning" %>
+        </div>
+      </div>
+    </div>
   <% end %>
 </div>

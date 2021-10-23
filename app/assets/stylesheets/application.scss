@@ -23,13 +23,16 @@ body {
   display: flex;
   flex-flow: column;
   min-height: 100vh;
-   background-image: image-url("nyanbo.jpg")
+  background-image: image-url("nyanbo.jpg");
 }
 
 main {
   flex: 1;
 }
 
+footer{
+    margin: 50px 0 0 0; 
+}
 
 #navbarDropdownMenuLink{
     color: #000;
@@ -43,9 +46,91 @@ main {
   padding: 15px;
 }
 
+.nav-search{
+    border-radius: 40px;
+}
 
 .dropdown:hover>.dropdown-menu {
   display: block;
+}
+
+.label_name{
+    margin: 60px 0 0 0;
+}
+
+.input_name{
+    margin: 60px 0 0 0;
+    width: 400px;
+}
+
+.label_signup_email{
+    margin: 30px 0 0 0;
+}
+
+.input_signup_email{
+    margin: 30px 0 0 0;
+    width: 400px;
+}
+
+.label_signup_password{
+    margin: 30px 0 0 0;
+}
+
+.input_signup_password{
+    margin: 30px 0 0 0;
+    width: 400px;
+}
+
+.label_email{
+   margin: 60px 0 0 0; 
+}
+
+.input_email{
+    margin: 60px 0 0 0;
+    width: 400px;
+}
+
+.input_password{
+    margin: 50px 0 40px 0;
+    width: 400px;
+}
+
+.label_password{
+   margin: 50px 0 0 0; 
+}
+
+.btn_login{
+    margin: 30px 0 0 0;
+}
+
+.home-search{
+    width: 500px;
+    height: 40px;
+    border-radius: 40px;
+}
+
+.mypage-icon{
+    display: inline-block;
+    background-color: #FCD07E;
+    border-radius: 0.25rem;
+    margin: 0 5px 0 0 ;
+}
+
+.mypage-row{
+    padding: 10px 0 10px 0;
+}
+
+.edit-button{
+    margin: 5px 0 0 0;
+}
+
+.introduction{
+    margin: 20px 10px 20px 20px;
+    background-color: rgba( 255, 255, 255, 0.3);
+}
+
+#input_introduction{
+    height: 200px;
 }
 
 .index-item{
@@ -54,6 +139,10 @@ main {
 
 .index-image{
     height: 150px;
+}
+
+.item-table{
+    background-color: rgba( 255, 255, 255, 0.3); 
 }
 
 .item img {
@@ -70,6 +159,10 @@ main {
     margin: 0px 20px 20px 20px;
 }
 
+.fa-user{
+    margin: 0px 20px 20px 20px;
+}
+
 .item-show{
     margin: 20px 0 20px 0;
 }
@@ -82,7 +175,7 @@ main {
     margin: 50px 0px 20px 0px;
 }
 
-#comment{
+#input_comment{
     height: 150px;
 }
 
@@ -108,3 +201,31 @@ main {
     color: #FFE28C;
 }
 
+#input_explanation{
+    height: 300px;
+}
+
+#input_message{
+    height: 180px;
+    margin: 20px 0 0 0;
+}
+
+.your-chat-content{
+    display: inline-block;
+    background-color: #C9F562;
+    border-radius: 0.25rem;
+    margin: 5px 0 5px 0 ;
+    padding: 10px;
+}
+
+.other-chat-content{
+    display: inline-block;
+    background-color: #F2F2F2;
+    border-radius: 0.25rem;
+    margin: 5px 0 0 0 ;
+    padding: 10px;
+}
+
+.chat-time{
+    margin: 15px 0 0 0;
+}

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get '/users/:id/barters' => 'users#barter', as: 'barters'
   get '/users/:id/wants' => 'users#want', as: 'wants'
   get '/users/:id/bookmarks' => 'users#bookmark', as: 'bookmarks'
-  get '/users/:id/rooms' => 'users#room', as: 'rooms' 
+  get '/users/:id/rooms' => 'users#room', as: 'users_rooms'
   
   resources :bartered_items, except: [:destroy] do
    resource :bookmarks,only: [:create, :destroy]
@@ -35,7 +35,6 @@ Rails.application.routes.draw do
   
   root to: 'homes#top'
   get 'about' => 'homes#about'
-  
   
   
 end

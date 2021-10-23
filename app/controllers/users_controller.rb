@@ -4,20 +4,25 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @currentUserEntry = Entry.where(user_id: current_user.id)
-    @userEntry = Entry.where(user_id: @user.id)
-    unless @user == current_user
-      @currentUserEntry.each do |cu|
-        @userEntry.each do |u|
-          if cu.room_id == u.room_id
-            @isRoom = true
-            @roomID = cu.room_id
+    @bartered_items = BarteredItem.where(is_deleted: false).where(user_id: @user.id).last(4).reverse
+    @wanted_items = WantedItem.where(user_id: @user.id).last(4).reverse
+    @bookmarks = Bookmark.where(user_id: @user.id).last(4).reverse
+    if user_signed_in?
+      @currentUserEntry = Entry.where(user_id: current_user.id)
+      @userEntry = Entry.where(user_id: @user.id)
+      unless @user == current_user
+        @currentUserEntry.each do |cu|
+          @userEntry.each do |u|
+            if cu.room_id == u.room_id
+              @isRoom = true
+              @roomID = cu.room_id
+            end
           end
         end
-      end
-      unless @isRoom
-        @room = Room.new
-        @entry = Entry.new
+        unless @isRoom
+          @room = Room.new
+          @entry = Entry.new
+        end
       end
     end
   end
@@ -52,21 +57,22 @@ class UsersController < ApplicationController
   end
 
   def barter
-    @bartered_items = BarteredItem.where(is_deleted: false)
+    @bartered_items = BarteredItem.where(is_deleted: false).where(user_id: params[:id])
   end
 
   def want
-    @wanted_items = WantedItem.all
+    @wanted_items = WantedItem.where(user_id: params[:id])
   end
 
   def bookmark
-    @bookmarks =Bookmark.where(user_id: current_user.id)
+    @bookmarks =Bookmark.where(user_id: current_user.id).reverse
   end
   
   def room
     @entries = Entry.where(user_id: current_user.id)
+    @entries2 = Entry.none
     @entries.each do |entry|
-      @entries2 = Entry.where(room_id: entry.room_id).where.not(user_id: current_user.id)#####where.notで指定以外を取得(参考https://www.sejuku.net/blog/13363）#####
+      @entries2 += Entry.where(room_id: entry.room_id).where.not(user_id: current_user.id)#####where.notで指定以外を取得(参考https://www.sejuku.net/blog/13363）#####
     end
   end
   
