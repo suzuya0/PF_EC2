@@ -2,39 +2,34 @@
   <div class="row border border-secondary rounded">
     <div class="col-lg-3 text-center">
       <div><%= attachment_image_tag @user, :image, class: "img-fluid", fallback: image_url("no_image.jpg") %></div>
-      <% if @user == current_user %>
-        <div><%= link_to "チャットルーム一覧", users_rooms_path(@user) %></div>
-      <% else %>
-
-        <div style="padding: 0 20px 0 0">
-          <span>
-            <% if current_user.following?(@user) %>
-              <%= link_to user_relationships_path(@user.id), method: :delete do %>
-                <i class="fas fa-user-check fa-lg"></i>
-              <% end %>
-            <% else %>
-              <%= link_to user_relationships_path(@user.id), method: :post do %>
-                <i class="far fa-user fa-lg"></i>
-              <% end %>
-            <% end %>
-          </span>
-          <span style="display: inline-block;">
-            <% if @isRoom == true %>
-              <%= link_to room_path(@roomID) do%>
-                <i class="fas fa-envelope fa-lg"></i>
-              <% end %>
-            <% else %>
-              <%= form_with model:@room, local:true do |f| %>
-                <%= fields_for @entry do |e| %>
-                  <%= e.hidden_field :user_id, value: @user.id %>
+      <% if user_signed_in? %> 
+        <% if @user == current_user %>
+          <div><%= link_to "チャットルーム一覧", users_rooms_path(@user) %></div>
+        <% else %>
+          <div style="padding: 0 20px 0 0">
+            <span id="user-<%= @user.id %>">
+              
+              <%= render "users/follow", user: @user %>
+            
+            </span>
+            <span style="display: inline-block;">
+              <% if @isRoom == true %>
+                <%= link_to room_path(@roomID) do%>
+                  <i class="fas fa-envelope fa-lg"></i>
                 <% end %>
-                <%= f.button :type => "submit", style: 'border-style: none; background: none;' do %>
-                  <i class="far fa-envelope fa-lg"></i>
+              <% else %>
+                <%= form_with model:@room, local:true do |f| %>
+                  <%= fields_for @entry do |e| %>
+                    <%= e.hidden_field :user_id, value: @user.id %>
+                  <% end %>
+                  <%= f.button :type => "submit", style: 'border-style: none; background: none;' do %>
+                    <i class="far fa-envelope fa-lg"></i>
+                  <% end %>
                 <% end %>
               <% end %>
-            <% end %>
-          </span>
-        </div>      
+            </span>
+          </div>      
+        <% end %>
       <% end %>
       <div>
         <sapn><%= link_to "#{@user.followings.count}フォロー", user_followings_path(@user.id) %></span>
@@ -52,7 +47,7 @@
         </tr>
       </table>
     </div>
-    <div class="introduction"><%= "#{@user.introduction}" %></div>
+    <div class="col-lg-11 introduction"><%= "#{@user.introduction}" %></div>
   </div>
   
   <% if current_user == @user %>  
@@ -86,6 +81,9 @@
               <%= link_to bartered_item_path(item) do %>
                 <%= truncate(item.title, length: 29) %>
               <% end %>
+              <span id="bartered_item-<%= item.id %>">
+                <%= render "bartered_items/bookmark", bartered_item: item %>
+              </span>
             </td>
           </tr>
         </table> 
@@ -150,15 +148,9 @@
                 <%= link_to bartered_item_path(bookmark.bartered_item) do %>
                   <%= truncate(bookmark.bartered_item.title, length: 29) %>
                 <% end %>
-                <% if bookmark.bartered_item.bookmarked_by?(current_user) %>
-                  <%= link_to bartered_item_bookmarks_path(bookmark.bartered_item), method: :delete do %>
-                    <i class="fas fa-bookmark"></i>
-                  <% end %>
-                <% else %>
-                  <%= link_to bartered_item_bookmarks_path(bookmark.bartered_item), method: :post do %>
-                    <i class="far fa-bookmark"></i>
-                  <% end %>
-                <% end %>
+                <span id="bartered_item-<%= bookmark.bartered_item.id %>">
+                  <%= render "bartered_items/bookmark", bartered_item: bookmark.bartered_item %>
+                </span>
               </td>
             </tr>
           </table> 

@@ -1,0 +1,3 @@
+$("#comment-counts-<%= @bartered_item.id %>").html("コメント：<%= @bartered_item.bartered_item_comments.count %>件");
+$(".comments").html("<%= j(render "bartered_item_comments/comment", bartered_item: @bartered_item) %>");
+$("textarea").val("");

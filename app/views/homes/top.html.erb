@@ -1,2 +1,43 @@
-<h1>Homes</h1>
-
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 offset-lg-3">
+      <div>
+        <%= form_with url: search_path, method: :get, local: true do |f| %>
+          <%= f.text_field :keyword, value: @keyword, class:"home-search", placeholder:"　キーワードを入力してください"%>
+          <%= f.button :type => "submit", style: 'border-style: none; background: none;' do %>
+            <i class="fas fa-search fa-lg"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+    <h5>最新の譲渡グッズ</h5>
+  <div class="row border border-secondary rounded mypage-row">
+    <% @bartered_items.each do |item| %>
+      <div class="col-lg-3">
+        <table class="table table-bordered item-table">
+          <tr>
+            <td class="text-center">
+              <%= link_to bartered_item_path(item) do %>
+                <% item.bartered_item_images.first(1).each do |image| %>
+                  <%= attachment_image_tag image, :image, :fill, 200, 200, class: "img-fluid",fallback: image_url("no_image.jpg") %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= link_to bartered_item_path(item) do %>
+                <%= truncate(item.title, length: 29) %>
+              <% end %>
+              <span id="bartered_item-<%= item.id %>">
+                <%= render "bartered_items/bookmark", bartered_item: item %>
+              </span>
+            </td>
+          </tr>
+        </table> 
+      </div>
+    <% end %>
+    <div class="col-lg-1 offset-lg-11"><%= link_to "一覧", bartered_items_path, class: "btn btn-light" %></div>
+  </div>
+</div>

@@ -28,20 +28,22 @@ class BarteredItemsController < ApplicationController
     @wanted_items = no1_wanted_item + no2_wanted_item + no3_wanted_item
   
     @user = @bartered_item.user
-    @currentUserEntry = Entry.where(user_id: current_user.id)
-    @userEntry = Entry.where(user_id: @user.id)
-    unless @user == current_user
-      @currentUserEntry.each do |cu|
-        @userEntry.each do |u|
-          if cu.room_id == u.room_id
-            @isRoom = true
-            @roomID = cu.room_id
+    if user_signed_in?
+      @currentUserEntry = Entry.where(user_id: current_user.id)
+      @userEntry = Entry.where(user_id: @user.id)
+      unless @user == current_user
+        @currentUserEntry.each do |cu|
+          @userEntry.each do |u|
+            if cu.room_id == u.room_id
+              @isRoom = true
+              @roomID = cu.room_id
+            end
           end
         end
-      end
-      unless @isRoom
-        @room = Room.new
-        @entry = Entry.new
+        unless @isRoom
+          @room = Room.new
+          @entry = Entry.new
+        end
       end
     end
   end
