@@ -7,20 +7,22 @@ class UsersController < ApplicationController
     @bartered_items = BarteredItem.where(is_deleted: false).where(user_id: @user.id).last(4).reverse
     @wanted_items = WantedItem.where(user_id: @user.id).last(4).reverse
     @bookmarks = Bookmark.where(user_id: @user.id).last(4).reverse
-    @currentUserEntry = Entry.where(user_id: current_user.id)
-    @userEntry = Entry.where(user_id: @user.id)
-    unless @user == current_user
-      @currentUserEntry.each do |cu|
-        @userEntry.each do |u|
-          if cu.room_id == u.room_id
-            @isRoom = true
-            @roomID = cu.room_id
+    if user_signed_in?
+      @currentUserEntry = Entry.where(user_id: current_user.id)
+      @userEntry = Entry.where(user_id: @user.id)
+      unless @user == current_user
+        @currentUserEntry.each do |cu|
+          @userEntry.each do |u|
+            if cu.room_id == u.room_id
+              @isRoom = true
+              @roomID = cu.room_id
+            end
           end
         end
-      end
-      unless @isRoom
-        @room = Room.new
-        @entry = Entry.new
+        unless @isRoom
+          @room = Room.new
+          @entry = Entry.new
+        end
       end
     end
   end

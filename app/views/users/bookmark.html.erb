@@ -33,15 +33,9 @@
               <%= link_to bartered_item_path(bookmark.bartered_item.id) do %>
                 <%= truncate(bookmark.bartered_item.title, length: 29) %>
               <% end %>
-              <% if bookmark.bartered_item.bookmarked_by?(current_user) %>
-                <%= link_to bartered_item_bookmarks_path(bookmark.bartered_item), method: :delete do %>
-                  <i class="fas fa-bookmark"></i>
-                <% end %>
-              <% else %>
-                <%= link_to bartered_item_bookmarks_path(bookmark.bartered_item), method: :post do %>
-                  <i class="far fa-bookmark"></i>
-                <% end %>
-              <% end %>
+              <span id="bartered_item-<%= bookmark.bartered_item.id %>">
+                <%= render "bartered_items/bookmark", bartered_item: bookmark.bartered_item %>
+              </span>
             </td>
           </tr>
         </table> 

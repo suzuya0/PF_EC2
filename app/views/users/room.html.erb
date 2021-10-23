@@ -5,16 +5,20 @@
   <div class="row">
     <table class="table">
       <tbody>
-        <% @entries2.each do |entry| %>
-            <tr>
-              <td class="col-lg-2"><%= link_to "#{entry.user.nick_name}さん", user_path(entry.user) %></td>
-              <% if entry.room.messages.present? %>
-                <td class="col-lg-8"><%= truncate(entry.room.messages.last.content, length: 200) %></td>
-              <% else %>
-                <td>メッセージはありません</td>
-              <% end %>
-              <td class="col-lg-2"><%= link_to "チャットへ", room_path(entry.room_id), class:"btn btn-primary" %></td>
-            </tr>
+        <% if @entries2.present? %>
+          <% @entries2.each do |entry| %>
+              <tr>
+                <td class="col-lg-2"><%= link_to "#{entry.user.nick_name}さん", user_path(entry.user) %></td>
+                <% if entry.room.messages.present? %>
+                  <td class="col-lg-8"><%= truncate(entry.room.messages.last.content, length: 200) %></td>
+                <% else %>
+                  <td>メッセージはありません</td>
+                <% end %>
+                <td class="col-lg-2"><%= link_to "チャットへ", room_path(entry.room_id), class:"btn btn-primary" %></td>
+              </tr>
+          <% end %>
+        <% else %>
+          <h6>チャットルームはありません</h6>
         <% end %>
       </tbody>
     </table>
