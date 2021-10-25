@@ -1,4 +1,10 @@
 class BarteredItem < ApplicationRecord
+  
+  validates :title, presence: true
+  validates :explanation, presence: true
+  validates :barter_way, presence: true
+  validates :desired_place, presence: true
+  
   has_many :bartered_item_images, dependent: :destroy
   has_many :bartered_item_comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy

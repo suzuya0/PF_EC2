@@ -1,24 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-6 offset-lg-3">
-      <div>
-        <span class="main">
-          <% @bartered_item.bartered_item_images.each do |image| %>
-            <%= attachment_image_tag image, :image, class: "img-fluid", fallback: image_url("no_image.jpg") %>
-          <% end %>
-        </span>
-      </div>  
-    </div>
-  </div> 
-  <div class="row">
-    <div class="col-lg-6 offset-lg-3">
-      <span class="nav">
         <% if @bartered_item.bartered_item_images.present? %>
-          <% @bartered_item.bartered_item_images.each do |image| %>
-            <%= attachment_image_tag image, :image, :fill, 50, 50, class: "default_image" %>
-          <% end %>
+          <span class="slider">
+            <% @bartered_item.bartered_item_images.each do |image| %>
+              <span><%= attachment_image_tag image, :image, class: "img-fluid", fallback: image_url("no_image.jpg") %></span>
+            <% end %>
+          </span>
+        <% else %>
+            <span><%= attachment_image_tag @bartered_item.bartered_item_images.first, :image, class: "img-fluid", fallback: image_url("no_image.jpg") %></span>
         <% end %>
-      </span>
     </div>
   </div>
   
@@ -95,26 +86,39 @@
        <h5><%= "#{@bartered_item.user.nick_name}さんの現在探し中グッズベスト3" %></h5>
     </div>
   </div>
-  <div class="row">
+  
+  
+  
+    <div class="row border border-secondary rounded mypage-row">
     <% @wanted_items.each do |item| %>
-      <div class="col-lg-3 offset-1">
-        <div class="text-center">
-          <% item.wanted_item_images.last(1).each do |image| %>
-              <%= link_to wanted_item_path(item.id) do %>
-                <%= attachment_image_tag image, :image, :fill, 180, 180, class: "default_image", fallback: image_url("no_image.jpg") %>
+      <div class="col-lg-4">
+        <table class="table table-bordered item-table">
+          <tr>
+            <td class="text-center">
+              <%= link_to wanted_item_path(item) do %>
+                <% if item.wanted_item_images.present? %>
+                  <% item.wanted_item_images.first(1).each do |image| %>
+                    <%= attachment_image_tag image, :image, :fill, 200, 200, class: "img-fluid",fallback: image_url("no_image.jpg") %>
+                  <% end %>
+                <% else %>
+                  <%= attachment_image_tag item.wanted_item_images.first, :image, :fill, 200, 200, class: "img-fluid",fallback: image_url("no_image.jpg") %>
+                <% end %>
               <% end %>
-          <% end %>
-        </div>
-        <div class="text-center">
-          <%= link_to wanted_item_path(item.id) do %><%= "#{item.title}" %><% end %>
-        </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= link_to wanted_item_path(item) do %>
+                <%= truncate(item.title, length: 29) %>
+              <% end %>
+            </td>
+          </tr>
+        </table> 
       </div>
     <% end %>
-  </div>
-  <div class="row">
     <div class="col-lg-3 offset-lg-9">
-      <div class="edit-button text-right">
-        <%= link_to "欲しいモノリスト一覧へ", wants_path(@bartered_item.user) %>
+      <div class="text-right">
+        <%= link_to "欲しいモノリスト一覧へ", wants_path(@bartered_item.user),class: "btn btn-light"%>
       </div>
     </div>
   </div>

@@ -25,23 +25,11 @@
 
 $(document).on('turbolinks:load', function() {
     $(function() {
-        $('.main').slick({
-        fade: true,
-        arrows:false,
-        asNavFor:'.nav',
+        $('.slider').slick({
+        dots: true,
         });
-    });
-});
-
-$(document).on('turbolinks:load', function() {
-    $(function() {
-        $('.nav').slick({
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        asNavFor: '.main',
-        centerMode: true,
-        focusOnSelect: true,
-        dots: true
+        $('.slick-dots li').on('mouseover', function() {
+        $('.slider').slick('goTo', $(this).index());
         });
     });
 });

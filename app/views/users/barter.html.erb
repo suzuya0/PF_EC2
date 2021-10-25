@@ -19,6 +19,8 @@
                   <% bartered_item.bartered_item_images.last(1).each do |image| %>
                     <%= attachment_image_tag image, :image, :fill, 200, 200, fallback: image_url("no_image.jpg")%>
                   <% end %>
+                <% else %>
+                  <%= attachment_image_tag bartered_item.bartered_item_images.first, :image, class: "img-fluid", fallback: image_url("no_image.jpg")%>
                 <% end %>
               <% end %>
             </td>
@@ -37,4 +39,5 @@
       </div>
     <% end %>
   </div>
+  <%= paginate @bartered_items %>
 </div>

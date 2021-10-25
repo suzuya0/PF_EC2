@@ -1,5 +1,16 @@
 <div class='container'>
   
+  <% if @bartered_item.errors.any? %>
+    <div id="error_explanation">
+      <h3><%= @bartered_item.errors.count %>件のエラーがあります</h3>
+      <ul>
+        <% @bartered_item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
   <div class="row" style="margin:30px 50px 40px 20px">
     <div class="col-lg-4 offset-lg-3">
       <h3 style="text-align: center;">譲渡グッズ 新規追加</h3>
@@ -33,14 +44,14 @@
   </div>
   <div class="row">
     <div class="col-lg-2">交換方法</div>
-    <div class="col-lg-4">
+    <div class="col-lg-10">
       <div class="form-group">
-        <%= f.radio_button :barter_way, :郵送のみ %>
-        <%= f.label :barter_way, '郵送のみ' %>
-        <%= f.radio_button :barter_way, :手渡しのみ %>
-        <%= f.label :barter_way, '手渡しのみ' %>
-        <%= f.radio_button :barter_way, :郵送・手渡し両方可%>
-        <%= f.label :barter_way, '郵送・手渡し両方可' %>
+        <div class="barter-way"><%= f.radio_button :barter_way, :郵送のみ %></div>
+        <div class="barter-way"><%= f.label :barter_way, '郵送のみ' %></div>
+        <div class="barter-way"><%= f.radio_button :barter_way, :手渡しのみ %></div>
+        <div class="barter-way"><%= f.label :barter_way, '手渡しのみ' %></div>
+        <div class="barter-way"><%= f.radio_button :barter_way, :郵送・手渡し両方可%></div>
+        <div class="barter-way"><%= f.label :barter_way, '郵送・手渡し両方可' %></div>
       </div>
     </div>
   </div>
