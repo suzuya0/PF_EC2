@@ -1,4 +1,15 @@
 <div class='container'>
+
+  <% if @wanted_item.errors.any? %>
+    <div id="error_explanation">
+      <h3><%= @wanted_item.errors.count %>件のエラーがあります</h3>
+      <ul>
+        <% @wanted_item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   
   <div class="row" style="margin:30px 50px 40px 20px">
     <div class="col-lg-4 offset-lg-3">

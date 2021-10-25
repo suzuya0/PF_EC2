@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-4 offset-lg-2">
+    <div class="col-lg-10 offset-lg-2">
+      <%= render "devise/shared/error_messages", resource: resource %>
       <h2 style="margin:30px 0 0 0;">ユーザー登録</h2>
     </div>
   </div>
 
   <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
     
     <div class="row">
       <div class="col-lg-2 offset-lg-2">

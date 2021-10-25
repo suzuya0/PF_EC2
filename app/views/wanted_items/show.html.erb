@@ -2,30 +2,21 @@
   <div class="row">
     <div class="col-lg-6 offset-lg-3">
       <div>
-        <div class="main">
-          <% @wanted_item.wanted_item_images.each do |image| %>
-            <div>
-              <%= attachment_image_tag image, :image, class: "img-fluid", fallback: image_url("no_image.jpg")%>
-            </div>
-          <% end %>
-        </div>
+        <% if @wanted_item.wanted_item_images.present? %>
+          <div class="slider">
+            <% @wanted_item.wanted_item_images.each do |image| %>
+              <div>
+                <%= attachment_image_tag image, :image, class: "img-fluid", fallback: image_url("no_image.jpg")%>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <span><%= attachment_image_tag @wanted_item.wanted_item_images.first, :image, class: "img-fluid", fallback: image_url("no_image.jpg") %></span>
+        <% end %>
       </div>  
     </div>
   </div> 
   
-  <div class="row">
-    <div class="col-lg-6 offset-lg-3">
-      <div class="nav">
-        <% if @wanted_item.wanted_item_images.present? %>
-          <% @wanted_item.wanted_item_images.each do |image| %>
-              <%= attachment_image_tag image, :image, :fill, 50, 50, class: "default_image" %>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  
-
   <div class="row">
     <div class="col-lg-6 item-show">
       <span>

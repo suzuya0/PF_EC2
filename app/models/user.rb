@@ -6,6 +6,9 @@ class User < ApplicationRecord
   
   attachment :image
   
+  validates :nick_name, presence: true, uniqueness: true, length: { in: 2..20 }
+  validates :introduction, length: { maximum: 1000 }
+  
   has_many :bartered_items, dependent: :destroy
   has_many :bartered_item_comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy

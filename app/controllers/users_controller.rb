@@ -57,15 +57,15 @@ class UsersController < ApplicationController
   end
 
   def barter
-    @bartered_items = BarteredItem.where(is_deleted: false).where(user_id: params[:id])
+    @bartered_items = BarteredItem.where(is_deleted: false).where(user_id: params[:id]).page(params[:page]).reverse_order
   end
 
   def want
-    @wanted_items = WantedItem.where(user_id: params[:id])
+    @wanted_items = WantedItem.where(user_id: params[:id]).page(params[:page]).reverse_order
   end
 
   def bookmark
-    @bookmarks =Bookmark.where(user_id: current_user.id).reverse
+    @bookmarks =Bookmark.where(user_id: current_user.id).page(params[:page]).reverse_order
   end
   
   def room

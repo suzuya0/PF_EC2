@@ -34,6 +34,25 @@ footer{
     margin: 50px 0 0 0; 
 }
 
+a{
+    color: #14001A;
+}
+
+.table{
+    background-color: rgba( 255, 191, 0, 0.5);
+    border-radius: 0.50rem;
+    border: none;
+}
+
+.table th,
+.table td {
+  border:none;
+}
+
+#error_explanation {
+    color: red;
+}
+
 #navbarDropdownMenuLink{
     color: #000;
 }
@@ -53,6 +72,26 @@ footer{
 .dropdown:hover>.dropdown-menu {
   display: block;
 }
+
+.pagination {
+  justify-content: center;
+}
+
+
+.pagination>li>a { 
+  border: none;
+  color: #696969;
+}
+
+
+.page-item.active .page-link {     
+  background-color: #ee7800;
+}
+
+.pagination>li>a:hover {
+	border-radius: 50%;
+}
+
 
 .label_name{
     margin: 60px 0 0 0;
@@ -109,9 +148,13 @@ footer{
     border-radius: 40px;
 }
 
+.profiel-area{
+    background-color: transparent;
+}
+
 .mypage-icon{
     display: inline-block;
-    background-color: #FCD07E;
+    background-color: rgba( 255, 204, 102, 0.5);
     border-radius: 0.25rem;
     margin: 0 5px 0 0 ;
 }
@@ -125,8 +168,10 @@ footer{
 }
 
 .introduction{
-    margin: 20px 10px 20px 20px;
-    background-color: rgba( 255, 255, 255, 0.3);
+    margin: 10px 10px 10px 10px;
+    padding: 7px;
+    background-color: rgba( 255, 204, 102, 0.5);
+    border-radius: 0.25rem;
 }
 
 #input_introduction{
@@ -141,9 +186,6 @@ footer{
     height: 150px;
 }
 
-.item-table{
-    background-color: rgba( 255, 255, 255, 0.3); 
-}
 
 .item img {
     /* 100%にしてしまえば横幅目一杯に広がるので「左に寄る問題」自体が発生しなくなる */
@@ -157,10 +199,20 @@ footer{
 
 .fa-user-check{
     margin: 0px 20px 20px 20px;
+    color: rgb( 245, 143, 152);
 }
 
 .fa-user{
     margin: 0px 20px 20px 20px;
+    color: rgb( 245, 143, 152);
+}
+
+.fa-envelope{
+    color: rgb( 245, 143, 152);
+}
+
+.fa-bookmark{
+    color: rgb( 245, 143, 152);
 }
 
 .item-show{
@@ -189,11 +241,19 @@ footer{
 
 .comment-list {
     margin: 20px 0 0 0;
+    background-color: rgba( 255, 191, 0, 0.2);
+    padding: 10px;
+    border-radius: 0.50rem;
+}
+
+.slick-track{
+    display: flex;
+    align-items: center;
 }
 
 
 .slick-prev:before, .slick-next:before {
-    color: #FFE28C;
+    color: #000;
     opacity: 1;
 }
 
@@ -210,10 +270,14 @@ footer{
     margin: 20px 0 0 0;
 }
 
+.barter-way{
+    display: inline-block;
+}
+
 .your-chat-content{
     display: inline-block;
     background-color: #C9F562;
-    border-radius: 0.25rem;
+    border-radius: 0.50rem;
     margin: 5px 0 5px 0 ;
     padding: 10px;
 }
@@ -221,7 +285,7 @@ footer{
 .other-chat-content{
     display: inline-block;
     background-color: #F2F2F2;
-    border-radius: 0.25rem;
+    border-radius: 0.50rem;
     margin: 5px 0 0 0 ;
     padding: 10px;
 }
@@ -229,3 +293,4 @@ footer{
 .chat-time{
     margin: 15px 0 0 0;
 }
+

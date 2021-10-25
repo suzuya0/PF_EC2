@@ -1,5 +1,16 @@
 <div class='container'>
-  
+  <div class="row">
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h3><%= @user.errors.count %>件のエラーがあります</h3>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
   <div class="row" style="margin:30px 50px 40px 20px">
     <div class="col-lg-4 offset-lg-3">
       <h3 style="text-align: center;">登録情報　編集</h3>
