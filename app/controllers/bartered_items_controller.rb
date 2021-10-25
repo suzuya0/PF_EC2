@@ -68,7 +68,7 @@ class BarteredItemsController < ApplicationController
   end
   
   def index
-    @bartered_items = BarteredItem.where(is_deleted: false)
+    @bartered_items = BarteredItem.page(params[:page]).where(is_deleted: false).reverse_order
   end
   
   def search
@@ -78,12 +78,12 @@ class BarteredItemsController < ApplicationController
       keywords.inject(bartered_items_false) do |bartered_items,keyword|
         @items = bartered_items.where("title like?", "%#{keyword}%").or(bartered_items.where("explanation like?", "%#{keyword}%"))
       end
-      @bartered_items = @items.distinct
+      @bartered_items = @items.distinct.page(params[:page]).reverse_order
       @keyword = params[:keyword]
       render "index"
     else
       flash[:notice] = '検索欄が未入力です。検索する際は、文字を入力して下さい。'
-      @bartered_items = BarteredItem.all
+      @bartered_items = BarteredItem.page(params[:page]).where(is_deleted: false).reverse_order
       redirect_to bartered_items_path
     end
   end

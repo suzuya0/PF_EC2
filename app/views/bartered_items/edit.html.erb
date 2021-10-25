@@ -35,12 +35,12 @@
     <div class="col-lg-2">交換方法</div>
     <div class="col-lg-4">
       <div class="form-group">
-        <%= f.radio_button :barter_way, :郵送のみ %>
-        <%= f.label :barter_way, '郵送のみ' %>
-        <%= f.radio_button :barter_way, :手渡しのみ %>
-        <%= f.label :barter_way, '手渡しのみ' %>
-        <%= f.radio_button :barter_way, :郵送・手渡し両方可%>
-        <%= f.label :barter_way, '郵送・手渡し両方可' %>
+        <div class="barter-way"><%= f.radio_button :barter_way, :郵送のみ %></div>
+        <div class="barter-way"><%= f.label :barter_way, '郵送のみ' %></div>
+        <div class="barter-way"><%= f.radio_button :barter_way, :手渡しのみ %></div>
+        <div class="barter-way"><%= f.label :barter_way, '手渡しのみ' %></div>
+        <div class="barter-way"><%= f.radio_button :barter_way, :郵送・手渡し両方可%></div>
+        <div class="barter-way"><%= f.label :barter_way, '郵送・手渡し両方可' %></div>
       </div>
     </div>
   </div>
