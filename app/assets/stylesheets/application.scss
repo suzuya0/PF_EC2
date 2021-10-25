@@ -39,7 +39,7 @@ a{
 }
 
 .table{
-    background-color: rgba( 255, 191, 0, 0.2);
+    background-color: rgba( 255, 191, 0, 0.5);
     border-radius: 0.50rem;
     border: none;
 }
@@ -72,6 +72,26 @@ a{
 .dropdown:hover>.dropdown-menu {
   display: block;
 }
+
+.pagination {
+  justify-content: center;
+}
+
+
+.pagination>li>a { 
+  border: none;
+  color: #696969;
+}
+
+
+.page-item.active .page-link {     
+  background-color: #ee7800;
+}
+
+.pagination>li>a:hover {
+	border-radius: 50%;
+}
+
 
 .label_name{
     margin: 60px 0 0 0;

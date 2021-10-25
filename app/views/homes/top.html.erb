@@ -29,8 +29,12 @@
           <tr>
             <td class="text-center">
               <%= link_to bartered_item_path(item) do %>
-                <% item.bartered_item_images.first(1).each do |image| %>
-                  <%= attachment_image_tag image, :image, :fill, 200, 200, class: "img-fluid",fallback: image_url("no_image.jpg") %>
+                <% if item.bartered_item_images.present? %>
+                  <% item.bartered_item_images.first(1).each do |image| %>
+                    <%= attachment_image_tag image, :image, :fill, 200, 200, class: "img-fluid",fallback: image_url("no_image.jpg") %>
+                  <% end %>
+                <% else %>
+                  <%= attachment_image_tag item.bartered_item_images.first, :image, :fill, 200, 200, class: "img-fluid",fallback: image_url("no_image.jpg") %>
                 <% end %>
               <% end %>
             </td>
