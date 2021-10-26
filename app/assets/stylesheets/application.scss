@@ -247,25 +247,43 @@ a{
     border-radius: 0.50rem;
 }
 
-.slick-track{
-    display: flex;
-    align-items: center;
-}
+// .slick-track{
+//     display: flex;
+//     align-items: center;
+// }
 
 
-.slick-prev:before, .slick-next:before {
-    color: #000;
-    opacity: 1;
+// .slick-prev:before, .slick-next:before {
+//     color: #000;
+//     opacity: 1;
+// }
+
+// .slick-dots {
+//   li {
+//     button:before {
+//       font-size: 60px;
+//       color: rgb(60, 60, 60);
+//     }
+//   }
+// }
+
+body .bx-wrapper {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
 }
 
-.slick-dots {
-  li {
-    button:before {
-      font-size: 60px;
-      color: rgb(60, 60, 60);
-    }
-  }
+.bx-clone img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
 }
+
 
 #input_explanation{
     height: 300px;
