@@ -23,35 +23,40 @@
   </div>
   <h5 style="margin-top:5rem">最新の譲渡グッズ</h5>
   <div class="row border border-secondary rounded mypage-row">
-    <% @bartered_items.each do |item| %>
-      <div class="col-lg-3">
-        <table class="table table-bordered item-table">
-          <tr>
-            <td class="text-center">
-              <%= link_to bartered_item_path(item) do %>
-                <% if item.bartered_item_images.present? %>
-                  <% item.bartered_item_images.first(1).each do |image| %>
-                    <%= attachment_image_tag image, :image, :fill, 200, 200, class: "img-fluid",fallback: image_url("no_image.jpg") %>
+    <% if @bartered_items.present? %>
+      <% @bartered_items.each do |item| %>
+        <div class="col-lg-3">
+          <table class="table table-bordered item-table">
+            <tr>
+              <td class="text-center">
+                <%= link_to bartered_item_path(item) do %>
+                  <% if item.bartered_item_images.present? %>
+                    <% item.bartered_item_images.first(1).each do |image| %>
+                      <%= attachment_image_tag image, :image, :fill, 200, 200, class: "img-fluid",fallback: image_url("no_image.jpg") %>
+                    <% end %>
+                  <% else %>
+                    <%= attachment_image_tag item.bartered_item_images.first, :image, :fill, 200, 200, class: "img-fluid",fallback: image_url("no_image.jpg") %>
                   <% end %>
-                <% else %>
-                  <%= attachment_image_tag item.bartered_item_images.first, :image, :fill, 200, 200, class: "img-fluid",fallback: image_url("no_image.jpg") %>
                 <% end %>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <%= link_to bartered_item_path(item) do %>
-                <%= truncate(item.title, length: 29) %>
-              <% end %>
-              <span id="bartered_item-<%= item.id %>">
-                <%= render "bartered_items/bookmark", bartered_item: item %>
-              </span>
-            </td>
-          </tr>
-        </table> 
-      </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <%= link_to bartered_item_path(item) do %>
+                  <%= truncate(item.title, length: 29) %>
+                <% end %>
+                <span id="bartered_item-<%= item.id %>">
+                  <%= render "bartered_items/bookmark", bartered_item: item %>
+                </span>
+              </td>
+            </tr>
+          </table> 
+        </div>
+      <% end %>
+      <div class="col-lg-1 offset-lg-11"><%= link_to "一覧", bartered_items_path, class: "btn btn-light" %></div>
+    <% else %>
+      <h6>グッズはありません</h6>
     <% end %>
-    <div class="col-lg-1 offset-lg-11"><%= link_to "一覧", bartered_items_path, class: "btn btn-light" %></div>
   </div>
+  
 </div>
