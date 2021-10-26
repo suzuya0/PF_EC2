@@ -11,7 +11,7 @@
 // about supported directives.
 //
 
-//= require jquery
+
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
@@ -23,7 +23,6 @@
 
 
 /*global $*/
-
 
 $(document).on('turbolinks:load', function() {
     $(function() {
