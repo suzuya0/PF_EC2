@@ -94,11 +94,11 @@
       <div class="col-lg-4">
         <table class="table table-bordered item-table">
           <tr>
-            <td>
+            <td class="text-center">
               <%= link_to wanted_item_path(item) do %>
                 <% if item.wanted_item_images.present? %>
                   <% item.wanted_item_images.first(1).each do |image| %>
-                    <%= attachment_image_tag image, :image, :fill, 200, 200,fallback: image_url("no_image.jpg") %>
+                    <%= attachment_image_tag image, :image, :fill, 200, 200, class: "img-fluid",fallback: image_url("no_image.jpg") %>
                   <% end %>
                 <% else %>
                   <%= attachment_image_tag item.wanted_item_images.first, :image, :fill, 200, 200, class: "img-fluid",fallback: image_url("no_image.jpg") %>
