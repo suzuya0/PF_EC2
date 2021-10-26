@@ -26,12 +26,19 @@
 
 $(document).on('turbolinks:load', function() {
     $(function() {
-        $('.slider').slick({
-        arrows: false,
-        dots: true,
-        });
-        $('.slick-dots li').on('mouseover', function() {
-        $('.slider').slick('goTo', $(this).index());
-        });
+        $('.slider').bxSlider();
     });
 });
+
+
+// $(document).on('turbolinks:load', function() {
+//     $(function() {
+//         $('.slider').slick({
+//         arrows: false,
+//         dots: true,
+//         });
+//         $('.slick-dots li').on('mouseover', function() {
+//         $('.slider').slick('goTo', $(this).index());
+//         });
+//     });
+// });
