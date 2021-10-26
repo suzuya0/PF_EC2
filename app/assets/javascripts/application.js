@@ -11,7 +11,7 @@
 // about supported directives.
 //
 
-//= require jquery
+
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
@@ -22,15 +22,16 @@
 //= require_tree .
 
 
-/*global jQuery*/
+/*global $*/
 
-jQuery(document).on('turbolinks:load', function() {
-    jQuery(function() {
-        jQuery('.slider').slick({
-        dots: true,
-        });
-        jQuery('.slick-dots li').on('mouseover', function() {
-        jQuery('.slider').slick('goTo', jQuery(this).index());
-        });
-    });
-});
+// $(document).on('turbolinks:load', function() {
+//     $(function() {
+//         $('.slider').slick({
+//         arrows: false,
+//         dots: true,
+//         });
+//         $('.slick-dots li').on('mouseover', function() {
+//         $('.slider').slick('goTo', $(this).index());
+//         });
+//     });
+// });
