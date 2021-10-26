@@ -22,15 +22,17 @@
 //= require_tree .
 
 
-/*global jQuery*/
+/*global $*/
 
-jQuery(document).on('turbolinks:load', function() {
-    jQuery(function() {
-        jQuery('.slider').slick({
+
+$(document).on('turbolinks:load', function() {
+    $(function() {
+        $('.slider').slick({
+        arrows: false,
         dots: true,
         });
-        jQuery('.slick-dots li').on('mouseover', function() {
-        jQuery('.slider').slick('goTo', jQuery(this).index());
+        $('.slick-dots li').on('mouseover', function() {
+        $('.slider').slick('goTo', $(this).index());
         });
     });
 });
