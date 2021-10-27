@@ -1,7 +1,7 @@
 <div class="container">
   <% @entries.each do |entry| %>
   　<% next if entry.user == current_user %>
-    <h4><%= link_to "#{entry.user.nick_name}さん", user_path(entry.user) %>とのチャットルーム</h4>
+    <h4 class="heading"><%= link_to "#{entry.user.nick_name}さん", user_path(entry.user) %>とのチャットルーム</h4>
   <% end %>
   
   <div class="messages">

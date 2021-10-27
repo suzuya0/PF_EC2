@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Patua+One&family=Zen+Kaku+Gothic+Antique:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Opti&family=Patua+One&family=Zen+Kaku+Gothic+Antique:wght@300;400&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -49,6 +49,7 @@
                 <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"fas fa-sign-out-alt"%></li>
                 <li class="nav-item">
                   <%= form_with url: search_path, method: :get, local: true do |f| %>
+                    <%= f.select :range, options_for_select([["全て"],["募集中"],["取引終了"]]) %>
                     <%= f.text_field :keyword, value: @keyword, class:"nav-search"%>
                     <%= f.button :type => "submit", style: 'border-style: none; background: none;' do %>
                       <i class="fas fa-search fa-lg"></i>
