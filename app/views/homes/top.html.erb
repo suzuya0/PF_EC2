@@ -1,6 +1,6 @@
 <div class="container">
   
-  <div style="margin:5rem 0 3rem 0">
+  <div class="home-text" style="margin:5rem 0 3rem 0">
     <h4 style="text-align:center">探していたグッズが見つかるかも？</h4>
     </br>
     <P style="text-align:center">当サイトは、アニメや漫画のグッズなどを物々交換する場所です。</p>
@@ -21,7 +21,7 @@
       </div>
     </div>
   </div>
-  <h5 style="margin-top:5rem">最新の譲渡グッズ</h5>
+  <h5 class="home-text" style="margin-top:5rem">最新の譲渡グッズ</h5>
   <div class="row border border-secondary rounded mypage-row">
     <% if @bartered_items.present? %>
       <% @bartered_items.each do |item| %>
@@ -55,7 +55,7 @@
       <% end %>
       <div class="col-lg-1 offset-lg-11"><%= link_to "一覧", bartered_items_path, class: "btn btn-light" %></div>
     <% else %>
-      <h6>グッズはありません</h6>
+      <h6 >グッズはありません</h6>
     <% end %>
   </div>
   
