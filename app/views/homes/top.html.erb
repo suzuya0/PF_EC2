@@ -45,18 +45,28 @@
                 <%= link_to bartered_item_path(item) do %>
                   <%= truncate(item.title, length: 29) %>
                 <% end %>
-                <span id="bartered_item-<%= item.id %>">
+                <span class="bartered_item-<%= item.id %>">
                   <%= render "bartered_items/bookmark", bartered_item: item %>
                 </span>
               </td>
             </tr>
+            <% if item.barter_status == "取引終了" %>
+              <tr>
+                <td class="trade-finish text-center"><%= item.barter_status %></th>
+              </tr>
+            <% else %>
+              <tr>
+                <td class="trade-unfinish text-center"><%= item.barter_status %></th>
+              </tr>
+            <% end %>
           </table> 
         </div>
       <% end %>
       <div class="col-lg-1 offset-lg-11"><%= link_to "一覧", bartered_items_path, class: "btn btn-light" %></div>
     <% else %>
-      <h6 >グッズはありません</h6>
+      <h6 class="home-text">グッズはありません</h6>
     <% end %>
   </div>
   
 </div>
+

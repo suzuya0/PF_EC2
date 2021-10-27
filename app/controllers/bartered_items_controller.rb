@@ -64,7 +64,7 @@ class BarteredItemsController < ApplicationController
   def delete
     @bartered_item = BarteredItem.find(params[:id])
     @bartered_item.update(is_deleted: true)
-    redirect_to root_path
+    redirect_to barters_path(current_user)
   end
   
   def index

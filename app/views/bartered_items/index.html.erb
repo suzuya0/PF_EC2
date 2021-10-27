@@ -1,8 +1,8 @@
 <div class="container">
   <% if @keyword %>
-    <h3><%= "検索結果：#{@keyword}" %></h3>
+    <h3 class="heading"><%= "検索結果：#{@keyword}" %></h3>
   <% else %>
-    <h3>譲渡グッズ　一覧</h3>
+    <h3 class="heading">譲渡グッズ　一覧</h3>
   <% end %>
   <div class="row">
     <% if @bartered_items.present? %>
@@ -32,16 +32,25 @@
                 <%= link_to bartered_item_path(bartered_item.id) do %>
                   <%= truncate(bartered_item.title, length: 29) %>
                 <% end %>
-                <span  id="bartered_item-<%= bartered_item.id %>">
+                <span class="bartered_item-<%= bartered_item.id %>">
                   <%= render "bookmark", bartered_item: bartered_item %>
                 </span>
               </td>
             </tr>
+            <% if bartered_item.barter_status == "取引終了" %>
+              <tr>
+                <td class="trade-finish text-center"><%= bartered_item.barter_status %></th>
+              </tr>
+            <% else %>
+              <tr>
+                <td class="trade-unfinish text-center"><%= bartered_item.barter_status %></th>
+              </tr>
+            <% end %>
           </table> 
         </div>
       <% end %>
     <% else %>
-      <div class="col-lg-4">該当するグッズはありません</div>
+      <div class="col-lg-4 heading">該当するグッズはありません</div>
     <% end %>
   </div>
   

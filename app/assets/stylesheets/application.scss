@@ -23,8 +23,10 @@
 body {
   display: flex;
   flex-flow: column;
-  min-height: 100vh;
+  min-height: 125vh;
   background-image: image-url("nyanbo.jpg");
+  background-size: cover;
+  zoom: 80%;
 }
 
 main {
@@ -98,8 +100,11 @@ a{
 }
 
 .home-text{
-    font-family: 'Patua One', cursive;
     font-family: 'Zen Kaku Gothic Antique', sans-serif;
+}
+
+.heading{
+    font-family: 'DotGothic16', sans-serif;
 }
 
 .label_name{
@@ -185,6 +190,14 @@ a{
 
 #input_introduction{
     height: 200px;
+}
+
+.trade-finish{
+    color: red;
+}
+
+.trade-unfinish{
+    color: green;
 }
 
 .index-item{
