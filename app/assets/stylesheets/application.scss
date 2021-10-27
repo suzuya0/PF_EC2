@@ -19,11 +19,11 @@
  @import 'font-awesome';
  
 
-
 body {
   display: flex;
   flex-flow: column;
   min-height: 100vh;
+  zoom: 80%;
   background-image: image-url("nyanbo.jpg");
 }
 
@@ -56,6 +56,10 @@ a{
 
 #navbarDropdownMenuLink{
     color: #000;
+}
+
+.logo{
+    font-family: 'Patua One', cursive;
 }
 
 .nav-link{
@@ -93,6 +97,10 @@ a{
 	border-radius: 50%;
 }
 
+.home-text{
+    font-family: 'Patua One', cursive;
+    font-family: 'Zen Kaku Gothic Antique', sans-serif;
+}
 
 .label_name{
     margin: 60px 0 0 0;
@@ -233,7 +241,7 @@ a{
 }
 
 .fa-paper-plane{
-    background: none;
+    background-color: rgba( 255, 191, 0, 0.2);
 }
 
 .comments{
