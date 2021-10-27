@@ -12,24 +12,24 @@
         <% end %>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-lg-6 item-show">
       <span>
         譲渡アイテム　詳細
       </span>
-      <span id="bartered_item-<%= @bartered_item.id %>" > 
+      <span id="bartered_item-<%= @bartered_item.id %>" >
         <%= render "bookmark", bartered_item: @bartered_item %>
       </span>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-lg-12">
     <span>
       出品者：<%= link_to user_path(@bartered_item.user) do %><%= "#{@bartered_item.user.nick_name}さん" %><% end %>
     </span>
-    <% if user_signed_in? %> 
+    <% if user_signed_in? %>
       <% unless current_user == @user %>
         <span id="user-<%= @user.id %>">
           <%= render "users/follow", user: @user %>
@@ -54,7 +54,7 @@
       <% end %>
     </div>
   </div>
-  
+
   <div class="row">
     <table class="table">
       <tbody>
@@ -86,9 +86,9 @@
        <h5><%= "#{@bartered_item.user.nick_name}さんの現在探し中グッズベスト3" %></h5>
     </div>
   </div>
-  
-  
-  
+
+
+
     <div class="row border border-secondary rounded mypage-row">
     <% @wanted_items.each do |item| %>
       <div class="col-lg-4">
@@ -113,7 +113,7 @@
               <% end %>
             </td>
           </tr>
-        </table> 
+        </table>
       </div>
     <% end %>
     <div class="col-lg-3 offset-lg-9">
@@ -122,8 +122,8 @@
       </div>
     </div>
   </div>
-    
-  <% if current_user == @user %>  
+
+  <% if current_user == @user %>
     <div class="row">
       <div class="col-lg-1 offset-lg-11">
         <div class="edit-button text-right">
@@ -138,15 +138,15 @@
       <i class="fas fa-comments fa-lg", id="comment-counts-<%= @bartered_item.id %>">コメント：<%= @bartered_item.bartered_item_comments.count %>件</i>
     </div>
   </div>
-  
-  <% if user_signed_in? %> 
+
+  <% if user_signed_in? %>
     <div class="row">
       <div class="col-lg-12">
         <%= form_with(model:[@bartered_item,@bartered_item_comment]) do |f| %>
           <div class="form-group-comment">
             <%= f.text_area :comment, class:"form-control" ,placeholder:"コメント", id:"input_comment" %>
             <div class="text-right">
-              <%= f.button :type => "submit", style: 'border-style: none; background: none;' do %>
+              <%= f.button :type => "submit", style: 'border-style: none; background-color: rgb( 255, 191, 0);border-radius: 0.80rem;' do %>
                 <i class="fas fa-paper-plane fa-lg"></i>
               <% end %>
             </div>
@@ -157,9 +157,23 @@
   <% else %>
     <p>ログイン後、コメントできます</p>
   <% end %>
-  
+
   <div class="comments">
     <%= render "bartered_item_comments/comment", bartered_item: @bartered_item %>
   </div>
 
 </div>
+
+<script>
+  $(document).on('turbolinks:load', function() {
+    $(function() {
+        $('.slider').slick({
+        arrows: false,
+        dots: true,
+        });
+        $('.slick-dots li').on('mouseover', function() {
+        $('.slider').slick('goTo', $(this).index());
+        });
+    });
+  });
+</script>

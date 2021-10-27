@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PF</title>
+    <title>BarterAnimeGoods</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Zen+Kaku+Gothic+Antique:wght@300;400&display=swap" rel="stylesheet">
   </head>
-        
+
   <body>
-    
+
     <header style="background-color: #FFE28C;">
       <nav class="navbar navbar-expand-lg navbar-dark">
-          <a class="navbar-brand" href="/"><span class="text-dark">BarterAnimeGoods</span></a>
+          <a class="navbar-brand" href="/"><span class="text-dark logo">BarterAnimeGoods</span></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -40,7 +43,7 @@
                       <i class="fas fa-search fa-lg"></i>
                     <% end %>
                   <% end %>
-                </li>                
+                </li>
               <% else %>
                 <li class="nav-item">
                   <%= link_to "新規登録", new_user_registration_path, class:"fas fa-user-plus text-dark"%>
@@ -58,20 +61,18 @@
                       <i class="fas fa-search fa-lg"></i>
                     <% end %>
                   <% end %>
-                </li> 
+                </li>
               <% end %>
             </ul>
           </div>
       </nav>
     </header>
-    
     <main>
       <p id="notice"><%= notice %></p>
-        
+
       <%= yield %>
-        
+
     </main>
-    
     <footer class="text-dark pt-5 pb-4", style="background-color: #FFE28C;">
     </footer>
     
