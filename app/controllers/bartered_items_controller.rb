@@ -64,7 +64,7 @@ class BarteredItemsController < ApplicationController
   def delete
     @bartered_item = BarteredItem.find(params[:id])
     @bartered_item.update(is_deleted: true)
-    redirect_to root_path
+    redirect_to barters_path(current_user)
   end
   
   def index
@@ -73,18 +73,44 @@ class BarteredItemsController < ApplicationController
   
   def search
     keywords = params[:keyword].split(/[[:blank:]]+/).select(&:present?)
+    @range = params[:range]
     if keywords.present?
-      bartered_items_false = BarteredItem.where(is_deleted: false)
-      keywords.inject(bartered_items_false) do |bartered_items,keyword|
-        @items = bartered_items.where("title like?", "%#{keyword}%").or(bartered_items.where("explanation like?", "%#{keyword}%"))
+      if @range == "全て"
+        bartered_items_false = BarteredItem.where(is_deleted: false)
+        keywords.inject(bartered_items_false) do |bartered_items,keyword|
+          @items = bartered_items.where("title like?", "%#{keyword}%").or(bartered_items.where("explanation like?", "%#{keyword}%"))
+        end
+        @bartered_items = @items.distinct.page(params[:page]).reverse_order
+        @keyword = params[:keyword]
+        render "index"
+      elsif @range == "募集中"
+        bartered_items_false = BarteredItem.where(is_deleted: false).where(barter_status: 0)
+        keywords.inject(bartered_items_false) do |bartered_items,keyword|
+          @items = bartered_items.where("title like?", "%#{keyword}%").or(bartered_items.where("explanation like?", "%#{keyword}%"))
+        end
+        @bartered_items = @items.distinct.page(params[:page]).reverse_order
+        @keyword = params[:keyword]
+        render "index"
+      else
+        bartered_items_false = BarteredItem.where(is_deleted: false).where(barter_status: 1)
+        keywords.inject(bartered_items_false) do |bartered_items,keyword|
+          @items = bartered_items.where("title like?", "%#{keyword}%").or(bartered_items.where("explanation like?", "%#{keyword}%"))
+        end
+        @bartered_items = @items.distinct.page(params[:page]).reverse_order
+        @keyword = params[:keyword]
+        render "index"
       end
-      @bartered_items = @items.distinct.page(params[:page]).reverse_order
-      @keyword = params[:keyword]
-      render "index"
     else
-      flash[:notice] = '検索欄が未入力です。検索する際は、文字を入力して下さい。'
-      @bartered_items = BarteredItem.page(params[:page]).where(is_deleted: false).reverse_order
-      redirect_to bartered_items_path
+      if @range == "全て"
+        @bartered_items = BarteredItem.where(is_deleted: false).page(params[:page]).reverse_order
+        render "index"
+      elsif @range == "募集中"
+        @bartered_items = BarteredItem.where(is_deleted: false).where(barter_status: 0).page(params[:page]).reverse_order
+        render "index"
+      elsif @range == "取引終了"
+        @bartered_items = BarteredItem.where(is_deleted: false).where(barter_status: 1).page(params[:page]).reverse_order
+        render "index"
+      end
     end
   end
   

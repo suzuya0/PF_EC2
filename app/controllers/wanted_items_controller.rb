@@ -35,7 +35,7 @@ class WantedItemsController < ApplicationController
   def destroy
     @wanted_item = WantedItem.find(params[:id])
     @wanted_item.destroy
-    redirect_to root_path
+    redirect_to wants_path(current_user)
   end
 
 private

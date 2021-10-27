@@ -15,20 +15,20 @@
 
   <div class="row">
     <div class="col-lg-6 item-show">
-      <span>
+      <h4 class="heading" style="display: inline-block;">
         譲渡アイテム　詳細
-      </span>
-      <span id="bartered_item-<%= @bartered_item.id %>" >
+      </h4>
+      <div class="bartered_item-<%= @bartered_item.id %>" style="display: inline-block;" >
         <%= render "bookmark", bartered_item: @bartered_item %>
-      </span>
+      </div>
     </div>
   </div>
 
   <div class="row">
     <div class="col-lg-12">
-    <span>
+    <h5>
       出品者：<%= link_to user_path(@bartered_item.user) do %><%= "#{@bartered_item.user.nick_name}さん" %><% end %>
-    </span>
+    </h5>
     <% if user_signed_in? %>
       <% unless current_user == @user %>
         <span id="user-<%= @user.id %>">
@@ -74,10 +74,17 @@
           <th><div class="text-center">希望交換場所</div></th>
           <th><%= @bartered_item.desired_place %></th>
         </tr>
-        <tr>
-          <th><div class="text-center">取引状態</div></th>
-          <th><%= @bartered_item.barter_status %></th>
-        </tr>
+        <% if @bartered_item.barter_status == "取引終了" %>
+          <tr>
+            <th><div class="text-center">取引状態</div></th>
+            <th class="trade-finish"><%= @bartered_item.barter_status %></th>
+          </tr>
+        <% else %>
+          <tr>
+            <th><div class="text-center">取引状態</div></th>
+            <th class="trade-unfinish"><%= @bartered_item.barter_status %></th>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>

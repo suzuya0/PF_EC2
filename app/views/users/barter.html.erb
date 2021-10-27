@@ -1,43 +1,56 @@
 <div class="container">
-  <div class="row">
-    <% @bartered_items.first(1).each do |bartered_item| %>
-      <h5>
-        <%= link_to user_path(bartered_item.user) do %>
-            <%= "#{bartered_item.user.nick_name}" %>
-          <% end %>さんの譲渡グッズ一覧
-      </h5>
-    <% end %>
-  </div>
-  <div class="row">
-    <% @bartered_items.each do |bartered_item| %>
-      <div class="col-lg-3 index-item">
-        <table class="table table-bordered item-table">
-          <tr>
-            <td class="text-center">
-              <%= link_to bartered_item_path(bartered_item.id) do %>
-                <% if bartered_item.bartered_item_images.present? %>
-                  <% bartered_item.bartered_item_images.last(1).each do |image| %>
-                    <%= attachment_image_tag image, :image, :fill, 200, 200, fallback: image_url("no_image.jpg")%>
+  <% if @bartered_items.present? %>
+    <div class="row">
+      <% @bartered_items.first(1).each do |bartered_item| %>
+        <h5 class="heading">
+          <%= link_to user_path(bartered_item.user) do %>
+              <%= "#{bartered_item.user.nick_name}" %>
+            <% end %>さんの譲渡グッズ一覧<%= "：#{@bartered_items.count}件" %>
+        </h5>
+      <% end %>
+    </div>
+    <div class="row">
+      <% @bartered_items.each do |bartered_item| %>
+        <div class="col-lg-3 index-item">
+          <table class="table table-bordered item-table">
+            <tr>
+              <td class="text-center">
+                <%= link_to bartered_item_path(bartered_item.id) do %>
+                  <% if bartered_item.bartered_item_images.present? %>
+                    <% bartered_item.bartered_item_images.last(1).each do |image| %>
+                      <%= attachment_image_tag image, :image, :fill, 200, 200, fallback: image_url("no_image.jpg")%>
+                    <% end %>
+                  <% else %>
+                    <%= attachment_image_tag bartered_item.bartered_item_images.first, :image, class: "img-fluid", fallback: image_url("no_image.jpg")%>
                   <% end %>
-                <% else %>
-                  <%= attachment_image_tag bartered_item.bartered_item_images.first, :image, class: "img-fluid", fallback: image_url("no_image.jpg")%>
                 <% end %>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <%= link_to bartered_item_path(bartered_item.id) do %>
-                <%= truncate(bartered_item.title, length: 29) %>
-              <% end %>
-              <span id="bartered_item-<%= bartered_item.id %>">
-                <%= render "bartered_items/bookmark", bartered_item: bartered_item %>
-              </span>
-            </td>
-          </tr>
-        </table> 
-      </div>
-    <% end %>
-  </div>
-  <%= paginate @bartered_items %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <%= link_to bartered_item_path(bartered_item.id) do %>
+                  <%= truncate(bartered_item.title, length: 29) %>
+                <% end %>
+                <span class="bartered_item-<%= bartered_item.id %>">
+                  <%= render "bartered_items/bookmark", bartered_item: bartered_item %>
+                </span>
+              </td>
+            </tr>
+            <% if bartered_item.barter_status == "取引終了" %>
+              <tr>
+                <td class="trade-finish text-center"><%= bartered_item.barter_status %></th>
+              </tr>
+            <% else %>
+              <tr>
+                <td class="trade-unfinish text-center"><%= bartered_item.barter_status %></th>
+              </tr>
+            <% end %>
+          </table> 
+        </div>
+      <% end %>
+    </div>
+    <%= paginate @bartered_items %>
+  <% else %>
+    <h5 class="heading">お探しグッズはありません</h5>
+  <% end %>
 </div>

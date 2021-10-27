@@ -10,9 +10,10 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-6 offset-lg-3">
+    <div class="col-lg-8 offset-lg-2">
       <div>
         <%= form_with url: search_path, method: :get, local: true do |f| %>
+          <%= f.select :range, options_for_select([["全て"],["募集中"],["取引終了"]]) %>
           <%= f.text_field :keyword, value: @keyword, class:"home-search", placeholder:"　キーワードを入力してください"%>
           <%= f.button :type => "submit", style: 'border-style: none; background: none;' do %>
             <i class="fas fa-search fa-lg"></i>
@@ -45,18 +46,28 @@
                 <%= link_to bartered_item_path(item) do %>
                   <%= truncate(item.title, length: 29) %>
                 <% end %>
-                <span id="bartered_item-<%= item.id %>">
+                <span class="bartered_item-<%= item.id %>">
                   <%= render "bartered_items/bookmark", bartered_item: item %>
                 </span>
               </td>
             </tr>
+            <% if item.barter_status == "取引終了" %>
+              <tr>
+                <td class="trade-finish text-center"><%= item.barter_status %></th>
+              </tr>
+            <% else %>
+              <tr>
+                <td class="trade-unfinish text-center"><%= item.barter_status %></th>
+              </tr>
+            <% end %>
           </table> 
         </div>
       <% end %>
       <div class="col-lg-1 offset-lg-11"><%= link_to "一覧", bartered_items_path, class: "btn btn-light" %></div>
     <% else %>
-      <h6 >グッズはありません</h6>
+      <h6 class="home-text">グッズはありません</h6>
     <% end %>
   </div>
   
 </div>
+
