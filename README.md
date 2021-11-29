@@ -24,9 +24,6 @@
 <br>
 ・もう手に入らないグッズを探している時。
 
-## 設計書
-後日搭載
-
 ## チャレンジ要素一覧
 <https://docs.google.com/spreadsheets/d/1r7uBSxm_H8jbCuHiQY8FCk0Dnjd1523eVYTFeNv0MDQ/edit#gid=0>
 
