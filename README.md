@@ -1,4 +1,4 @@
-# <a href="https://35.76.179.248/">Bater Anime Goods</a>
+# <a href="http://35.76.179.248/">Bater Anime Goods</a>
 
 ## サイト概要
 　自分の持っているグッズと他のファンが持っているグッズを交換する場を提供するサービスです。
